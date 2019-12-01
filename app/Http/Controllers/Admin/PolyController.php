@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Poly;
 
 class PolyController extends Controller
 {
@@ -14,7 +15,10 @@ class PolyController extends Controller
      */
     public function index()
     {
-        //
+        $polies = Poly::orderBy('name', 'asc')->paginate(5);
+        return view('admin.poly.index', [
+          'polies' => $polies
+        ]);
     }
 
     /**

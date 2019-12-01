@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Medicine;
 
 class MedicineController extends Controller
 {
@@ -14,7 +15,10 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        //
+        $medicines = Medicine::orderBy('name', 'asc')->paginate(5);
+        return view('admin.medicine.index', [
+          'medicines' => $medicines
+        ]);
     }
 
     /**

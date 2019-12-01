@@ -7,8 +7,8 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
-              Role
-              <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm" style="float:right">Add Role</a>
+              Poli
+              <a href="{{ route('poly.create') }}" class="btn btn-primary btn-sm" style="float:right">Tambahkan Poli</a>
           </h3>
         </div>
         <div class="box-body">
@@ -25,14 +25,14 @@
                 }
                 $no = config('simpuskestren.pagination') * $page - (config('simpuskestren.pagination') - 1);
             @endphp
-            @foreach ($roles as $role)
+            @foreach ($polies as $poly)
               <tr>
                 <td>{{ $no++ }}</td>
-                <td>{{ $role->name }}</td>
+                <td>{{ $poly->name }}</td>
                 <td>
-                  <a href="{{ route('role.edit', $role) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
-                  {{-- <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $role->name }}' href={{ route('role.destroy', $role) }}> <i class="fa fa-trash"></i> Delete</button>
+                  <a href="{{ route('poly.edit', $poly) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                  {{-- <a href="{{ route('poly.destroy', $poly->id) }}" class="btn btn-danger">Delete</a> --}}
+                  <button class="btn btn-danger" id='delete' data-title='{{ $poly->name }}' href={{ route('poly.destroy', $poly) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
@@ -44,7 +44,7 @@
           </table>
         </div>
         <div class="box-footer clearfix">
-          {{ $roles->links('vendor.pagination.adminlte') }}
+          {{ $polies->links('vendor.pagination.adminlte') }}
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
         var title = $(this).data('title');
 
         Swal.fire({
-          title: 'Delete this '+ title +' role',
+          title: 'Delete this '+ title +' poly',
           text: "One deleted, you will not be able to recover this category",
           type: 'warning',
           showCancelButton: true,

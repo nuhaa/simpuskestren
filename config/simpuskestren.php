@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'pagination' => env('PAGINATION_PER_PAGE') ?? 2,
+    'pagination' => env('PAGINATION_PER_PAGE') ?? 5,
     'front_pagination' => env('FRONT_PAGINATION_PER_PAGE') ?? 4,
 ];

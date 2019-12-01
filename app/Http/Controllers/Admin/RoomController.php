@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Room;
 
 class RoomController extends Controller
 {
@@ -14,7 +15,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::orderBy('name', 'asc')->paginate(5);
+        return view('admin.room.index', [
+          'rooms' => $rooms
+        ]);
     }
 
     /**

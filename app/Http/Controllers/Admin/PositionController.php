@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Position;
 
 class PositionController extends Controller
 {
@@ -14,7 +15,10 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //
+        $positions = Position::orderBy('name', 'asc')->paginate(5);
+        return view('admin.position.index', [
+          'positions' => $positions
+        ]);
     }
 
     /**

@@ -40,8 +40,12 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
         // untuk admin
         $this->mapAdminRoutes();
-
-        //
+        // rekam_medis
+        $this->mapRekamMedisRoutes();
+        // dokter
+        $this->mapDokterRoutes();
+        // apotek
+        $this->mapApotekRoutes();
     }
 
     /**
@@ -71,6 +75,55 @@ class RouteServiceProvider extends ServiceProvider
              ->prefix('admin')
              ->namespace($this->namespace . '\Admin')
              ->group(base_path('routes/admin.php'));
+    }
+
+    /**
+     * Define the "rekam_medis" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    // untuk admin
+    protected function mapRekamMedisRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:rekam_medis')
+             ->prefix('rekam-medis')
+             ->namespace($this->namespace . '\RekamMedis')
+             ->group(base_path('routes/rekamMedis.php'));
+    }
+
+    /**
+     * Define the "dokter" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    // untuk admin
+    protected function mapDokterRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:dokter')
+             ->prefix('dokter')
+             ->namespace($this->namespace . '\Dokter')
+             ->group(base_path('routes/dokter.php'));
+    }
+
+
+    /**
+     * Define the "apotek" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    // untuk admin
+    protected function mapApotekRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:apotek')
+             ->prefix('apotek')
+             ->namespace($this->namespace . '\Apotek')
+             ->group(base_path('routes/apotek.php'));
     }
 
     /**

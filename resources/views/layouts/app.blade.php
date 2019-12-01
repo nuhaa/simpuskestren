@@ -53,7 +53,7 @@
                     <span>{{ auth()->user()->name }}</span>
                   </div>
                   <div class="navbar-dropdown">
-                    <div class="navbar-item">Test</div>
+                    {{-- <div class="navbar-item">Test</div> --}}
                     <a href="{{ route('logout') }}" class="navbar-item"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">Log Out</a>
