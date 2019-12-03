@@ -36,66 +36,43 @@
 @section('content')
     <div class="columns is-multiline">
       <div class="column is-12">
-        <article class="message is-warning">
-          <div class="message-header">
-            <p class="marquee">
-					    <span style="color:#000">
-					       Silakan Mendaftar Apabila Belum Memiliki Akun
-					    </span>
-				    </p>
-          </div>
-        </article>
+        <button class="button is-normal is-fullwidth">
+          <p class="marquee">
+            <span style="color:#000">
+               Silakan Mendaftar Apabila Belum Memiliki Akun
+            </span>
+          </p>
+      </button>
       </div>
       <div class="column is-6">
-        <div class="box">
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-128x128">
-                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-              </figure>
+        <section class="hero is-medium is-primary is-bold">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Pasien Santri
+              </h1>
+              <h2 class="subtitle">
+                Digunakan untuk pendaftaran khusus bagi santri tebuireng
+              </h2>
             </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong>Pasien Santri</strong>
-                  <br>
-                  Digunakan untuk pendaftaran khusus bagi santri tebuireng
-                </p>
-                <a href="{{ route('register') }}" class="button is-primary is-fullwidth modal-button">Daftar&nbsp;<b>(santri)</b></a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        {{-- modal --}}
-        <div class="modal">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <!-- Any other Bulma elements you want -->
           </div>
-          <button class="modal-close is-large" aria-label="close"></button>
-        </div>
+          <a href="{{ route('register') }}" class="button is-warning is-fullwidth">Daftar&nbsp;<b>(santri)</b></a>
+        </section>
       </div>
       <div class="column is-6">
-        <div class="box">
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-128x128">
-                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-              </figure>
+        <section class="hero is-medium is-warning is-bold">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Pasien Umum
+              </h1>
+              <h2 class="subtitle">
+                Digunakan untuk pendaftaran khusus bagi masyarakat umum
+              </h2>
             </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong>Pasien Umum</strong>
-                  <br>
-                  Digunakan untuk pendaftaran khusus bagi pasien kategori umum
-                </p>
-                <a href="{{ route('register') }}" class="button is-primary is-fullwidth">Daftar&nbsp; <b>(umum)</b></a>
-              </div>
-            </div>
-          </article>
-        </div>
+          </div>
+          <a href="{{ route('register') }}" class="button is-primary is-fullwidth">Daftar&nbsp;<b>(santri)</b></a>
+        </section>
       </div>
     </div>
 @endsection

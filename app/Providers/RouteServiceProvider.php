@@ -46,6 +46,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapDokterRoutes();
         // apotek
         $this->mapApotekRoutes();
+        // pasien
+        $this->mapPasienRoutes();
     }
 
     /**
@@ -124,6 +126,22 @@ class RouteServiceProvider extends ServiceProvider
              ->prefix('apotek')
              ->namespace($this->namespace . '\Apotek')
              ->group(base_path('routes/apotek.php'));
+    }
+
+    /**
+     * Define the "apotek" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    // untuk admin
+    protected function mapPasienRoutes()
+    {
+        Route::middleware('web', 'auth', 'role:pasien')
+             ->prefix('pasien')
+             ->namespace($this->namespace . '\Pasien')
+             ->group(base_path('routes/pasien.php'));
     }
 
     /**

@@ -67,7 +67,27 @@
           </div>
         </nav>
         <section class="section">
+          @auth
+          <div class="columns">
+              <div class="column is-2">
+                <aside class="menu">
+                  <p class="menu-label">Selamat Datang, </p>
+                  <ul class="menu-list">
+                      <li><a href="{{ route('pasien.index') }}" class="{{ Request::path() == "pasien/dashboard" ? "is-active has-background-primary" : "" }}">Dashboard</a></li>
+                      <li><a href="{{ route('pasien.profile') }}" class="{{ Request::path() == "pasien/profile" ? "is-active has-background-primary" : "" }}">Profil</a></li>
+                      <li><a href="{{ route('pasien.registration') }}" class="{{ Request::path() == "pasien/registration" ? "is-active has-background-primary" : "" }}">Riwayat Pendaftaran</a></li>
+                      <li><a href="{{ route('pasien.medical.record') }}" class="{{ Request::path() == "pasien/medical-record" ? "is-active has-background-primary" : "" }}">Rekam Medis</a></li>
+                  </ul>
+                </aside>
+              </div>
+              <div class="column is-10">
+                @yield('content')
+              </div>
+          </div>
+          @endauth
+          @guest
             @yield('content')
+          @endguest
         </section>
     </div>
     <script>

@@ -52,5 +52,8 @@ class LoginController extends Controller
           // return redirect('/admin');
           return redirect()->route('admin.index');
         }
+        if ($user->hasRole('pasien')) {
+          return redirect()->route('pasien.index');
+        }
     }
 }
