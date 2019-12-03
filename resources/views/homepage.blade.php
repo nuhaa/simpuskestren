@@ -56,7 +56,7 @@
               </h2>
             </div>
           </div>
-          <a href="{{ route('register') }}" class="button is-warning is-fullwidth">Daftar&nbsp;<b>(santri)</b></a>
+          <a href="{{ route('register') }}" class="button is-warning is-fullwidth">Daftar&nbsp;<b>(Santri)</b></a>
         </section>
       </div>
       <div class="column is-6">
@@ -71,7 +71,7 @@
               </h2>
             </div>
           </div>
-          <a href="{{ route('register') }}" class="button is-primary is-fullwidth">Daftar&nbsp;<b>(santri)</b></a>
+          <a href="{{ route('register') }}" class="button is-primary is-fullwidth">Daftar&nbsp;<b>(Umum)</b></a>
         </section>
       </div>
     </div>

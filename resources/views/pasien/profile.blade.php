@@ -17,7 +17,7 @@
       <div class="field-body">
         <div class="field">
           <p class="control">
-            <input class="input" type="email" placeholder="Recipient email">
+            <input class="input" type="text" placeholder="Isikan nama" name="name" value="{{ auth()->user()->name }}">
           </p>
         </div>
       </div>
@@ -30,7 +30,7 @@
       <div class="field-body">
         <div class="field">
           <p class="control">
-            <input class="input" type="email" placeholder="Recipient email">
+            <input class="input" type="email" placeholder="Isikan Email" name="email" value="{{ auth()->user()->email }}">
           </p>
         </div>
       </div>
@@ -43,20 +43,8 @@
       <div class="field-body">
         <div class="field">
           <p class="control">
-            <input class="input" type="email" placeholder="Recipient email">
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Jabatan</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <input class="input" type="email" placeholder="Recipient email">
+            <textarea class="textarea" rows="2" name="alamat">{{ auth()->user()->address }}</textarea>
+            {{-- <input class="input" type="email" placeholder="Recipient email"> --}}
           </p>
         </div>
       </div>
