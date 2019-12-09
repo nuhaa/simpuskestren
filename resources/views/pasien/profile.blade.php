@@ -23,6 +23,23 @@
       </div>
     </div>
 
+    @if (auth()->user()->status_pendaftaran == 'santri')
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">NIS</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input class="input" type="text" placeholder="Isikan NIS" name="nis" value="{{ auth()->user()->nis }}">
+            </p>
+          </div>
+        </div>
+      </div>
+    @else
+      <input type="hidden" name="nis" value="">
+    @endif
+
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Email</label>
@@ -38,29 +55,15 @@
 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">Alamat</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <p class="control">
-            <textarea class="textarea" rows="2" name="alamat">{{ auth()->user()->address }}</textarea>
-            {{-- <input class="input" type="email" placeholder="Recipient email"> --}}
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
         <label class="label">Jenis Kelamin</label>
       </div>
       <div class="field-body">
         <div class="field">
           <p class="control select">
             <select name="gender">
-                <option value="" {{ auth()->user()->gender == null ?? "active" }}>Pilih Jenis Kelamin</option>
+                <option value="">Pilih Jenis Kelamin</option>
                 <option value="laki_laki" {{ auth()->user()->gender == "laki_laki" ? "selected" : "" }}>Laki-laki</option>
-                <option value="perempuan" {{ auth()->user()->gender == "perempuan" ?? "selected" }}>Perempuan</option>
+                <option value="perempuan" {{ auth()->user()->gender == "perempuan" ? "selected" : "" }}>Perempuan</option>
             </select>
           </p>
         </div>
@@ -75,6 +78,20 @@
         <div class="field">
           <p class="control">
             <input class="input" type="number" placeholder="Isikan Nomer Telpon Anda" name="phone" value="{{ auth()->user()->phone }}">
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">Alamat</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <textarea class="textarea" rows="2" name="alamat">{{ auth()->user()->address }}</textarea>
+            {{-- <input class="input" type="email" placeholder="Recipient email"> --}}
           </p>
         </div>
       </div>

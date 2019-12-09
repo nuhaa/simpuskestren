@@ -7,8 +7,8 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
-              Permission
-              <a href="{{ route('permission.create') }}" class="btn btn-primary btn-sm" style="float:right">Add Permission</a>
+              Hak Akses
+              {{-- <a href="{{ route('permission.create') }}" class="btn btn-primary btn-sm" style="float:right">Add Permission</a> --}}
           </h3>
         </div>
         <div class="box-body">
@@ -30,9 +30,9 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $permission->name }}</td>
                 <td>
-                  <a href="{{ route('permission.edit', $permission) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="#!" disabled="" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('permission.destroy', $permission->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $permission->name }}' href={{ route('permission.destroy', $permission) }}> <i class="fa fa-trash"></i> Delete</button>
+                  <button class="btn btn-danger" id='delete' disabled="" data-title='{{ $permission->name }}' href={{ route('permission.destroy', $permission) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")

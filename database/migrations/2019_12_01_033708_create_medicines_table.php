@@ -19,6 +19,7 @@ class CreateMedicinesTable extends Migration
             $table->string('kegunaan');
             $table->string('aturan_pakai');
             $table->string('sasaran');
+            $table->string('satuan')->nullable();
             $table->timestamps();
         });
     }

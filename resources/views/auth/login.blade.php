@@ -4,7 +4,8 @@
 <div class="container">
   <div class="columns is-centered">
       <div class="column is-half box">
-      <h1 class="is-size-3">Login</h1>
+      <h1 class="is-size-3 message-header">Login</h1>
+      <br>
       <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="field">
@@ -35,15 +36,15 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
-                    <button type="submit" class="button is-info">
+                    <button type="submit" class="button is-primary">
                         {{ __('Login') }}
                     </button>
 
-                    @if (Route::has('password.request'))
+                    {{-- @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
       </form>

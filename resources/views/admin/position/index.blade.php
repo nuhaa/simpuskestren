@@ -1,5 +1,7 @@
 @extends('admin.templates.default');
-
+@section('partial_css')
+  <link rel="stylesheet" href="{{ asset('admin/css/jquery.dataTables.min.css') }}">
+@endsection
 @section('content')
 @include('admin.templates.partials._alert')
   <div class="row">
@@ -8,51 +10,53 @@
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
               Jabatan
-              <a href="{{ route('position.create') }}" class="btn btn-primary btn-sm" style="float:right">Tambahkan Jabatan</a>
+              <a href="{{ route('position.create') }}" class="btn bg-purple btn-sm" style="float:right">Tambahkan Jabatan</a>
           </h3>
         </div>
         <div class="box-body">
-          <table class="table table-bordered">
-            <tr>
-              <th style="width:10px">No</th>
-              <th>Name</th>
-              <th>Action</th>
-            </tr>
-            @php
-                $page = 1;
-                if (request()->has('page')) {
-                    $page = request('page');
-                }
-                $no = config('simpuskestren.pagination') * $page - (config('simpuskestren.pagination') - 1);
-            @endphp
-            @foreach ($positions as $position)
+          <table class="table table-bordered" id="table">
+            <thead>
               <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $position->name }}</td>
-                <td>
-                  <a href="{{ route('position.edit', $position) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
-                  {{-- <a href="{{ route('position.destroy', $position->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $position->name }}' href={{ route('position.destroy', $position) }}> <i class="fa fa-trash"></i> Delete</button>
-                  <form action="" method="post" id="deleteForm">
-                    @csrf
-                    @method("DELETE")
-                    <input type="submit" style="display:none" value="">
-                  </form>
-                </td>
+                <th style="width:10px">No</th>
+                <th>Name</th>
+                <th>Action</th>
               </tr>
-            @endforeach
+            </thead>
           </table>
         </div>
-        <div class="box-footer clearfix">
+        {{-- <div class="box-footer clearfix">
           {{ $positions->links('vendor.pagination.adminlte') }}
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
 @endsection
 @push('scripts')
+  <script src="{{ asset('admin/js/data-table/jquery.dataTables.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script type="text/javascript">
+    $(function() {
+        var table = $('#table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{{ route("position.data") }}'
+            },
+            fnCreatedRow: function (row, data, index) {
+      			  $('td', row).eq(0).html(index + 1);
+      			},
+            columns:
+            [
+              {data: 'id', name: 'id'},
+              {data: 'name', name: 'name', orderable: true, searchable: true},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              // {data: 'deleted_at', name: 'deleted_at', 'searchable': false},
+              // {data: 'edit', name:'edit', 'searchable': false, 'orderable': false}
+              // {data: 'name', name: 'name', orderable: false, searchable: false},
+            ],
+        });
+    });
+
     $('button#delete').on('click', function(){
         var href  = $(this).attr('href');
         var title = $(this).data('title');

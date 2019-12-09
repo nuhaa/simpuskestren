@@ -37,6 +37,10 @@
             <li><a href="{{ route('room.index') }}"><i class="fa fa-angle-right"></i> Ruang</a></li>
           </ul>
         </li>
+        <li class='{{ Request::path() == "admin/user" ? "active" : "" }}' ><a href="{{ route('user.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Pengguna</span></a></li>
+        <li class='{{ Request::path() == "admin/listmedicine" ? "active" : "" }}' ><a href="{{ route('listmedicine.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Obat</span></a></li>
+        <li class='{{ Request::path() == "admin/schedule" ? "active" : "" }}' ><a href="{{ route('schedule.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Obat</span></a></li>
+        {{-- <li class='{{ Request::path() == "admin/medicine-stok" ? "active" : "" }}' ><a href="{{ route('admin.medicine.stok') }}"><i class="fa fa-angle-double-right"></i> <span>Stok Obat</span></a></li> --}}
       {{-- <li class='{{ (Request::is('admin/category/*') or Request::is('admin/category'))  ? "active" : "" }}' ><a href="{{ route('category.index') }}"><i class="fa fa-angle-double-right"></i> <span>Category</span></a></li>
       <li class='{{ (Request::is('admin/product/*') or Request::is('admin/product'))  ? "active" : "" }}' ><a href="{{ route('product.index') }}"><i class="fa fa-angle-double-right"></i> <span>Product</span></a></li> --}}
     </ul>

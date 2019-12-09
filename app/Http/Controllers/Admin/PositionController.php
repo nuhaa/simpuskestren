@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Position;
+use Yajra\Datatables\Datatables;
 
 class PositionController extends Controller
 {
@@ -19,6 +20,17 @@ class PositionController extends Controller
         return view('admin.position.index', [
           'positions' => $positions
         ]);
+    }
+
+    /* data position */
+    public function position()
+    {
+        // dd("asd");
+        $positions = Position::orderBy('name', 'asc');
+        return Datatables::of($positions)->addColumn('action', function($positions){
+            return '<a href="" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>';
+        })->rawColumns(['action'])->make(true);
+
     }
 
     /**

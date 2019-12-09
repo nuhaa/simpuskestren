@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/pasien/dashboard';
 
     /**
      * Create a new controller instance.
@@ -49,13 +49,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'address' => ['required'],
-            'phone' => ['required'],
-        ]);
+        if($data['status'] == 'santri'){
+          return Validator::make($data, [
+              'name' => ['required', 'string', 'max:255'],
+              'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+              'nis' => ['required', 'string', 'unique:users'],
+              'password' => ['required', 'string', 'min:8', 'confirmed'],
+              'address' => ['required'],
+              'phone' => ['required'],
+          ]);
+        }else{
+          return Validator::make($data, [
+              'name' => ['required', 'string', 'max:255'],
+              'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+              'password' => ['required', 'string', 'min:8', 'confirmed'],
+              'address' => ['required'],
+              'phone' => ['required'],
+          ]);
+        }
     }
 
     /**
@@ -66,15 +77,30 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        if($data['status'] == 'santri'){
+          $user = User::create([
+            'name' => strtolower($data['name']),
+            'nis' => $data['nis'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'status_pendaftaran' => $data['status'],
+            'gender' => $data['gender'],
+          ]);
+        }else{
+          $user = User::create([
             'name' => strtolower($data['name']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'address' => $data['address'],
             'phone' => $data['phone'],
-        ]);
+            'status_pendaftaran' => $data['status'],
+            'gender' => $data['gender'],
+          ]);
+        }
 
-        $user->assignRole('user');
+        $user->assignRole('pasien');
 
         return $user;
     }

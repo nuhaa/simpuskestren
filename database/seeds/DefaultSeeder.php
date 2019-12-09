@@ -22,6 +22,8 @@ class DefaultSeeder extends Seeder
           'address' => 'Ketandan Lama 5A, Genteng - Ketabang',
           'phone' => '085711111111',
           'status_pendaftaran' => 'pegawai',
+          'gender' => 'laki_laki',
+          'nis' => null,
           'created_at' => Carbon::now(),
         ],[
           'name' => 'Rekam Medis',
@@ -30,14 +32,38 @@ class DefaultSeeder extends Seeder
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
           'status_pendaftaran' => 'pegawai',
+          'gender' => 'laki_laki',
+          'nis' => null,
           'created_at' => Carbon::now(),
         ],[
-          'name' => 'Dokter',
-          'email' => 'dokter@simpuskestren.com',
+          'name' => 'Dokter Umum',
+          'email' => 'dokter_umum@simpuskestren.com',
           'password' => bcrypt('12345678'),
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
           'status_pendaftaran' => 'pegawai',
+          'gender' => 'laki_laki',
+          'nis' => null,
+          'created_at' => Carbon::now(),
+        ],[
+          'name' => 'Dokter KIA',
+          'email' => 'dokter_kia@simpuskestren.com',
+          'password' => bcrypt('12345678'),
+          'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
+          'phone' => '085711111111',
+          'status_pendaftaran' => 'pegawai',
+          'gender' => 'laki_laki',
+          'nis' => null,
+          'created_at' => Carbon::now(),
+        ],[
+          'name' => 'Dokter Gigi',
+          'email' => 'dokter_gigi@simpuskestren.com',
+          'password' => bcrypt('12345678'),
+          'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
+          'phone' => '085711111111',
+          'status_pendaftaran' => 'pegawai',
+          'gender' => 'laki_laki',
+          'nis' => null,
           'created_at' => Carbon::now(),
         ],[
           'name' => 'Apoteker',
@@ -46,6 +72,8 @@ class DefaultSeeder extends Seeder
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
           'status_pendaftaran' => 'pegawai',
+          'gender' => 'laki_laki',
+          'nis' => null,
           'created_at' => Carbon::now(),
         ],[
           'name' => 'Pasien Santri',
@@ -54,6 +82,8 @@ class DefaultSeeder extends Seeder
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
           'status_pendaftaran' => 'santri',
+          'gender' => 'laki_laki',
+          'nis' => '1234567891',
           'created_at' => Carbon::now(),
         ],[
           'name' => 'Pasien Umum',
@@ -62,6 +92,8 @@ class DefaultSeeder extends Seeder
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
           'status_pendaftaran' => 'umum',
+          'gender' => 'laki_laki',
+          'nis' => '1234567892',
           'created_at' => Carbon::now(),
         ]]);
 
@@ -98,9 +130,11 @@ class DefaultSeeder extends Seeder
             ['user_id' => 1, 'role_id' => 1],
             ['user_id' => 2, 'role_id' => 2],
             ['user_id' => 3, 'role_id' => 3],
-            ['user_id' => 4, 'role_id' => 4],
-            ['user_id' => 5, 'role_id' => 5],
-            ['user_id' => 6, 'role_id' => 5],
+            ['user_id' => 4, 'role_id' => 3],
+            ['user_id' => 5, 'role_id' => 3],
+            ['user_id' => 6, 'role_id' => 4],
+            ['user_id' => 7, 'role_id' => 5],
+            ['user_id' => 8, 'role_id' => 5],
         ]);
     }
 }

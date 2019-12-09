@@ -2,6 +2,7 @@
 <html>
   <head>
     @include('admin.templates.partials._head')
+    @yield('partial_css')
   </head>
 <body class="hold-transition skin-purple-light sidebar-mini">
 <div class="wrapper">
@@ -29,5 +30,6 @@
 </div>
 
   @include('admin.templates.partials._script')
+  @yield('partial_script')
 </body>
 </html>

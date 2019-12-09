@@ -8,7 +8,7 @@
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
               Poli
-              <a href="{{ route('poly.create') }}" class="btn btn-primary btn-sm" style="float:right">Tambahkan Poli</a>
+              <a href="{{ route('poly.create') }}" class="btn bg-purple btn-sm" style="float:right">Tambahkan Poli</a>
           </h3>
         </div>
         <div class="box-body">

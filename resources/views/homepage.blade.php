@@ -34,45 +34,79 @@
   </style>
 @endsection
 @section('content')
-    <div class="columns is-multiline">
-      <div class="column is-12">
-        <button class="button is-normal is-fullwidth">
-          <p class="marquee">
-            <span style="color:#000">
-               Silakan Mendaftar Apabila Belum Memiliki Akun
-            </span>
-          </p>
-      </button>
-      </div>
-      <div class="column is-6">
-        <section class="hero is-medium is-primary is-bold">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                Pasien Santri
-              </h1>
-              <h2 class="subtitle">
-                Digunakan untuk pendaftaran khusus bagi santri tebuireng
-              </h2>
+    @auth
+      <div class="columns">
+        <div class="column is-6">
+          <section class="hero is-small is-primary is-bold">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  Jumlah Daftar
+                </h1>
+                <h2 class="subtitle">
+                  0
+                </h2>
+              </div>
             </div>
-          </div>
-          <a href="{{ route('register') }}" class="button is-warning is-fullwidth">Daftar&nbsp;<b>(Santri)</b></a>
-        </section>
-      </div>
-      <div class="column is-6">
-        <section class="hero is-medium is-warning is-bold">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                Pasien Umum
-              </h1>
-              <h2 class="subtitle">
-                Digunakan untuk pendaftaran khusus bagi masyarakat umum
-              </h2>
+          </section>
+        </div>
+        <div class="column is-6">
+          <section class="hero is-small is-warning is-bold">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  Jumlah Rekam Medis
+                </h1>
+                <h2 class="subtitle">
+                  0
+                </h2>
+              </div>
             </div>
-          </div>
-          <a href="{{ route('register') }}" class="button is-primary is-fullwidth">Daftar&nbsp;<b>(Umum)</b></a>
-        </section>
+          </section>
+        </div>
       </div>
-    </div>
+    @endauth
+    @guest
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <button class="button is-normal is-fullwidth">
+            <p class="marquee">
+              <span style="color:#000">
+                 Silakan Mendaftar Apabila Belum Memiliki Akun
+              </span>
+            </p>
+        </button>
+        </div>
+        <div class="column is-6">
+          <section class="hero is-medium is-primary is-bold">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  Pasien Santri
+                </h1>
+                <h2 class="subtitle">
+                  Digunakan untuk pendaftaran khusus bagi santri tebuireng
+                </h2>
+              </div>
+            </div>
+            <a href="{{ route('register') }}?status=santri" class="button is-warning is-fullwidth">Daftar&nbsp;<b>(Santri)</b></a>
+          </section>
+        </div>
+        <div class="column is-6">
+          <section class="hero is-medium is-warning is-bold">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  Pasien Umum
+                </h1>
+                <h2 class="subtitle">
+                  Digunakan untuk pendaftaran khusus bagi masyarakat umum
+                </h2>
+              </div>
+            </div>
+            <a href="{{ route('register') }}?status=umum" class="button is-primary is-fullwidth">Daftar&nbsp;<b>(Umum)</b></a>
+          </section>
+        </div>
+      </div>
+    @endguest
 @endsection

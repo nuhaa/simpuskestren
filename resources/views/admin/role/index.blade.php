@@ -7,8 +7,8 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
-              Role
-              <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm" style="float:right">Add Role</a>
+              Level Pengguna
+              {{-- <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm" style="float:right">Add Role</a> --}}
           </h3>
         </div>
         <div class="box-body">
@@ -30,9 +30,9 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $role->name }}</td>
                 <td>
-                  <a href="{{ route('role.edit', $role) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                  <a href="#!" disabled="" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $role->name }}' href={{ route('role.destroy', $role) }}> <i class="fa fa-trash"></i> Delete</button>
+                  <button class="btn btn-danger" id='delete' disabled="" data-title='{{ $role->name }}' href={{ route('role.destroy', $role) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
