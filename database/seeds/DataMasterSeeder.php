@@ -33,8 +33,8 @@ class DataMasterSeeder extends Seeder
 
         Poly::insert([
           ['name' => 'Umum','created_at' => Carbon::now()],
-          ['name' => 'KIA','created_at' => Carbon::now()],
           ['name' => 'Gigi','created_at' => Carbon::now()],
+          ['name' => 'KIA','created_at' => Carbon::now()],
         ]);
 
         Medicine::insert([
@@ -151,28 +151,6 @@ class DataMasterSeeder extends Seeder
           ['name' => 'Toilet','created_at' => Carbon::now()],
           ['name' => 'Musholla','created_at' => Carbon::now()],
           ['name' => 'Kantin','created_at' => Carbon::now()],
-        ]);
-
-        ListMedicine::insert([
-          [ 'medicine_id' => 1, 'price' => 10000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
-        ]);
-
-        Schedule::insert([
-          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Senin', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Senin', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Senin', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Selasa', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Selasa', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Selasa', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Rabu', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Rabu', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Rabu', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Kamis', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Kamis', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Kamis', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Jumat', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Jumat', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
-          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Jumat', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
         ]);
     }
 }

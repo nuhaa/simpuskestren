@@ -112,7 +112,7 @@
     <div class="columns">
       <div class="column is-3 is-offset-5">
         <button type="sumbit" class="button is-primary" name="button">
-          <span class="fas fa-fw"></span>
+          <span class="fab fa-address-book"></span>
           Perbarui Data
         </button>
       </div>

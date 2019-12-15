@@ -17,6 +17,7 @@ class CreateRegistersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('poly_id')->unsigned();
+            $table->integer('no_antrian')->unsigned();
             $table->date('date_check');
             $table->time('time_check_start');
             $table->time('time_check_end');

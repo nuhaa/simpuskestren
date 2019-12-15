@@ -93,7 +93,7 @@ class DefaultSeeder extends Seeder
           'phone' => '085711111111',
           'status_pendaftaran' => 'umum',
           'gender' => 'laki_laki',
-          'nis' => '1234567892',
+          'nis' => null,
           'created_at' => Carbon::now(),
         ]]);
 

@@ -5,6 +5,8 @@ Route::get('/dashboard', function () {
 })->name('pasien.index');
 
 Route::get('/dashboard', 'DashboardController@index')->name('pasien.index');
+Route::post('/form-tanggal', 'DashboardController@formTanggal')->name('pasien.form.tanggal');
+Route::post('/store-antrian', 'DashboardController@storeAntrian')->name('pasien.store.antrian');
 Route::get('/profile', 'ProfileController@index')->name('pasien.profile');
 Route::get('/registration', 'RegistrationController@index')->name('pasien.registration');
 Route::get('/medical-record', 'MedicalRecordController@index')->name('pasien.medical.record');
