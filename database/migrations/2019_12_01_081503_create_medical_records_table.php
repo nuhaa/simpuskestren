@@ -18,8 +18,9 @@ class CreateMedicalRecordsTable extends Migration
             $table->bigInteger('register_id')->unsigned();
             $table->bigInteger('doctor_id')->unsigned();
             $table->bigInteger('poly_id')->unsigned();
-            $table->string('first_diagnosis')->nullable();
-            $table->string('doctor_diagnosis');
+            $table->string('first_diagnosis');
+            $table->string('doctor_diagnosis')->nullable();
+            $table->string('keterangan');
             $table->foreign('register_id')->references('id')->on('registers')->onDelete('cascade');
             $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('poly_id')->references('id')->on('polies')->onDelete('cascade');

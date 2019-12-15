@@ -19,3 +19,12 @@
 2. membuat dummy data untuk aplikasi
 3. membuat fungsi dasar untuk data master
 4. membuat tampilan untuk level user pasien
+
+
+/*Status Register*/
+1. register,
+2. verified / un_verified
+3. diagnosis, Tensi Normal, BB 65, Tinggi 165
+4. check_doctor,
+5. medicine,
+6. done

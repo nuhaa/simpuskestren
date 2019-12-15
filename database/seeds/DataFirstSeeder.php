@@ -35,6 +35,13 @@ class DataFirstSeeder extends Seeder
           [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Jumat', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
           [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Jumat', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
           [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Jumat', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Sabtu', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Sabtu', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Sabtu', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 3, 'poly_id' => 1, 'day' => 'Ahad', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 4, 'poly_id' => 2, 'day' => 'Ahad', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 5, 'poly_id' => 2, 'day' => 'Ahad', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
+          [ 'user_id' => 5, 'poly_id' => 3, 'day' => 'Ahad', 'time_start' => '07:00:00', 'time_end' => '12:00:00', 'created_at' => Carbon::now() ],
         ]);
 
         Register::insert([

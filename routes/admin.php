@@ -16,3 +16,6 @@ Route::resource('/medicine', 'MedicineController');
 Route::resource('/room', 'RoomController');
 Route::resource('/user', 'UserController');
 Route::resource('/schedule', 'ScheduleController');
+Route::resource('/data-register', 'RegistrationController');
+Route::post('/register-update', 'RegistrationController@updateStatus')->name('data-register.update.status');
+Route::post('/record', 'RegistrationController@record')->name('data-register.record');

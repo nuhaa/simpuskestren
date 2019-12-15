@@ -15,4 +15,9 @@ class Register extends Model
     {
         return $this->hasMany(Poly::class, 'id', 'poly_id');
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
 }
