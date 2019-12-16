@@ -33,19 +33,33 @@ class DashboardController extends Controller
                                           ->latest('no_antrian')
                                           ->first();
                 /* cek saat jam akhir dengan jam sekarang */
-                $cekJamAkhirStar = strtotime($jamAkhir['time_check_end']);
-                $cekJamSekarang = time();
-                if ($cekJamAkhirStar > $cekJamSekarang) {
+                $cekJamSekarang   = str_replace(":","",date("h:i:s"));
+                $cekJamAkhirStart = str_replace(":","", $jamAkhir['time_check_end']);
+                if ($cekJamAkhirStart > $cekJamSekarang) {
                   $jamAkhirStar = $jamAkhir['time_check_end'];
                 } else {
                   $jamAkhirStar = date("h:i:s");
                 }
                 $jamAkhirEnd = date('h:i:s',strtotime('+10 minutes',strtotime($jamAkhirStar)));
-                $noAntrian = $jamAkhir['no_antrian']+1;
+                $noAntrian = $jamAkhir['no_antrian'];
             } else {
                 /* cek saat jam akhir dengan jam sekarang */
-                $jamAkhirStar = date("07:00:00");
-                $jamAkhirEnd = "07:10:00";
+                $dayNow = date('d');
+                $dayChoice = date('d', strtotime($tanggal));
+                if ($dayNow == $dayChoice) {
+                    $jamNow = str_replace(":","",date("h:i:s"));
+                    $jamAwal = str_replace(":","", "07:00:00");
+                    if ($jamNow > $jamAwal) {
+                      $jamAkhirStar = date("h:i:s");
+                      $jamAkhirEnd = date('h:i:s',strtotime('+10 minutes',strtotime($jamAkhirStar)));
+                    }else{
+                      $jamAkhirStar = "07:00:00";
+                      $jamAkhirEnd = "07:10:00";
+                    }
+                }else{
+                    $jamAkhirStar = "07:00:00";
+                    $jamAkhirEnd = "07:10:00";
+                }
                 $noAntrian = 0;
             }
             $date2[] = [
@@ -53,7 +67,7 @@ class DashboardController extends Controller
               'jumlah' => $cekCount,
               'jamAkhirStar' => $jamAkhirStar,
               'jamAkhirEnd' => $jamAkhirEnd,
-              'noAntrian' => $noAntrian,
+              'noAntrian' => $noAntrian+1,
             ];
         }
         // dd($date2);
