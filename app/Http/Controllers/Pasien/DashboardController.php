@@ -70,7 +70,6 @@ class DashboardController extends Controller
               'noAntrian' => $noAntrian+1,
             ];
         }
-        // dd($date2);
         return view('pasien.formTanggal', compact('data', 'date2', 'poli', 'name'));
     }
 

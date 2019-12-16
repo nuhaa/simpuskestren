@@ -18,9 +18,21 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        $datas = Register::with('polies','users')
-                            // ->where('status_check','register')
-                            ->where('date_check', date('Y-m-d'))
+        $user = auth()->user();
+        foreach ($user->roles as $isi) {
+            $roles = $isi['name'];
+        }
+        $datas = Register::with('polies','users');
+        if ($roles == 'dokter') {
+            $dayNow = format_hari(Carbon::now()->format('l'));
+            $cekPoli = Schedule::where('day',$dayNow)
+                                  ->where('user_id', $user->id)
+                                  ->first();
+            $polyId = $cekPoli->poly_id;
+            $datas = $datas ->where('poly_id',$polyId)
+                            ->where('status_check','check_doctor');
+        }
+            $datas = $datas ->where('date_check', date('Y-m-d'))
                             ->orderBy('date_check','DESC')
                             ->get();
         return view('admin.register.index', compact('datas'));

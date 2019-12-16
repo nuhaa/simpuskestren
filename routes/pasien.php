@@ -3,7 +3,6 @@
 Route::get('/dashboard', function () {
     return view('pasien.index');
 })->name('pasien.index');
-
 Route::get('/dashboard', 'DashboardController@index')->name('pasien.index');
 Route::post('/form-tanggal', 'DashboardController@formTanggal')->name('pasien.form.tanggal');
 Route::post('/store-antrian', 'DashboardController@storeAntrian')->name('pasien.store.antrian');

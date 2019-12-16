@@ -20,4 +20,9 @@ class Register extends Model
     {
         return $this->hasMany(User::class, 'id', 'user_id');
     }
+
+    public function medicalRecords()
+    {
+        return $this->hasMany(MedicalRecord::class, 'register_id', 'id');
+    }
 }
