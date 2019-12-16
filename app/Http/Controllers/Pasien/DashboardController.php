@@ -27,31 +27,31 @@ class DashboardController extends Controller
             $cekCount = Register::where('date_check', $tanggal)
                                         ->where('poly_id', $poli)
                                         ->count();
-            if ($cekCount > 0){
+            if ($cekCount > 0) {
                 $jamAkhir = Register::where('date_check', $tanggal)
                                           ->where('poly_id', $poli)
                                           ->latest('no_antrian')
                                           ->first();
                 /* cek saat jam akhir dengan jam sekarang */
-                $cekJamSekarang   = str_replace(":","",date("h:i:s"));
+                $cekJamSekarang   = str_replace(":","",date("H:i:s"));
                 $cekJamAkhirStart = str_replace(":","", $jamAkhir['time_check_end']);
                 if ($cekJamAkhirStart > $cekJamSekarang) {
                   $jamAkhirStar = $jamAkhir['time_check_end'];
                 } else {
-                  $jamAkhirStar = date("h:i:s");
+                  $jamAkhirStar = date("H:i:s");
                 }
-                $jamAkhirEnd = date('h:i:s',strtotime('+10 minutes',strtotime($jamAkhirStar)));
+                $jamAkhirEnd = date('H:i:s',strtotime('+10 minutes',strtotime($jamAkhirStar)));
                 $noAntrian = $jamAkhir['no_antrian'];
             } else {
                 /* cek saat jam akhir dengan jam sekarang */
                 $dayNow = date('d');
                 $dayChoice = date('d', strtotime($tanggal));
                 if ($dayNow == $dayChoice) {
-                    $jamNow = str_replace(":","",date("h:i:s"));
+                    $jamNow = str_replace(":","",date("H:i:s"));
                     $jamAwal = str_replace(":","", "07:00:00");
                     if ($jamNow > $jamAwal) {
-                      $jamAkhirStar = date("h:i:s");
-                      $jamAkhirEnd = date('h:i:s',strtotime('+10 minutes',strtotime($jamAkhirStar)));
+                      $jamAkhirStar = date("H:i:s");
+                      $jamAkhirEnd = date('H:i:s',strtotime('+10 minutes',strtotime($jamAkhirStar)));
                     }else{
                       $jamAkhirStar = "07:00:00";
                       $jamAkhirEnd = "07:10:00";
