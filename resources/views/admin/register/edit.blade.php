@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-md-10 col-md-offset-1">
-  <div class="box box-info">
+  <div class="box">
     <div class="box-header with-border">
       <div class="box-title">Validasi Pasien</div>
     </div>
@@ -44,7 +44,7 @@
         <br>
         <div class="form-group {{ $errors->has('doctor_id') ? 'has-error' : '' }}">
           <label for="" class="col-sm-2 control-label">Pilih Dokter</label>
-          <div class="col-md-6">
+          <div class="col-md-10">
             <select name="doctor_id" class="form-control">
               @foreach ($daftarDokters as $dokter)
                 <option value="{{ $dokter['user_id'] }}">
@@ -58,19 +58,15 @@
               <p class="help-block">{{ $errors->first('doctor_id') }}</p>
             @endif
           </div>
-          <div class="col-md-4">
-          </div>
         </div>
         <br>
         <div class="form-group {{ $errors->has('keterangan') ? 'has-error' : '' }}">
           <label for="" class="col-sm-2 control-label">Keterangan</label>
-          <div class="col-md-6">
+          <div class="col-md-10">
             <input type="text" name="keterangan" class="form-control" value="{{ old('keterangan') }}" placeholder="Isikan keterangan periksa">
             @if ($errors->has('keterangan'))
               <p class="help-block">{{ $errors->first('keterangan') }}</p>
             @endif
-          </div>
-          <div class="col-md-4">
           </div>
         </div>
         <br>

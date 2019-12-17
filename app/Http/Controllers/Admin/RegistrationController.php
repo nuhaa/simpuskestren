@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Register;
 use App\Models\Schedule;
+use App\Models\ListMedicine;
 use App\Models\MedicalRecord;
+use App\Models\MedicalRecordsListMedicine;
 
 class RegistrationController extends Controller
 {
@@ -33,7 +35,8 @@ class RegistrationController extends Controller
                             ->where('status_check','check_doctor');
         }
             $datas = $datas ->where('date_check', date('Y-m-d'))
-                            ->orderBy('date_check','DESC')
+                            ->orderBy('poly_id','ASC')
+                            ->orderBy('no_antrian','ASC')
                             ->get();
         return view('admin.register.index', compact('datas'));
     }
@@ -93,6 +96,25 @@ class RegistrationController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function check($id)
+    {
+        /*prepare data*/
+        $register = Register::with('polies','users','medicalRecords')
+                                ->where('date_check', date('Y-m-d'))
+                                ->where('id', $id)
+                                ->first();
+        $medicines = ListMedicine::with('medicines')
+                                ->orderBy('medicine_id')
+                                ->get();
+        return view('admin.register.dokterCheck', compact('register', 'medicines'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -123,8 +145,34 @@ class RegistrationController extends Controller
         $register->update([
             'status_check' => $message,
         ]);
+    }
 
-        echo "berhasil";
+    public function updateDokter(Request $request)
+    {
+       $this->validate($request, [
+           'doctor_diagnosis' => 'required',
+       ]);
+       $register_id       = $request->register_id;
+       $message           = $request->status_check;
+       $medical_record_id = $request->medical_record_id;
+       $doctor_diagnosis  = $request->doctor_diagnosis;
+       $register = Register::find($register_id);
+       $register->update([
+           'status_check' => $message
+       ]);
+       $medical_records = MedicalRecord::find($medical_record_id);
+       $medical_records->update([
+           'doctor_diagnosis' => $doctor_diagnosis
+       ]);
+
+       for ($i=0; $i < count($request->list_medicines); $i++) {
+           $val[] = [
+              'medical_record_id' => $medical_record_id,
+              'list_medicine_id' => $request->list_medicines[$i]
+           ];
+       }
+       MedicalRecordsListMedicine::insert($val);
+       return redirect()->route('dokter.data-register.index')->with('success', 'Berhasil Memberikan Tindakan untuk Pasien');
     }
 
     public function record(Request $request)

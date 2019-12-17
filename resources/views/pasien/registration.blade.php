@@ -16,6 +16,7 @@
           <thead>
             <tr>
               <th>No</th>
+              <th>No Antrian</th>
               <th>Poli</th>
               <th>Tanggal Periksa</th>
               <th>Jam Periksa</th>
@@ -27,6 +28,7 @@
           @foreach ($datas as $data)
             <tr>
               <td>{{ $loop->iteration }}</td>
+              <td>{{ $data->no_antrian }}</td>
               <td>
                 @foreach ($data['polies'] as $poli)
                   {{ $poli['name'] }}

@@ -24,7 +24,7 @@
 /*Status Register*/
 1. register,
 2. verified / un_verified
-3. diagnosis, Tensi Normal, BB 65, Tinggi 165
+3. diagnosis,
 4. check_doctor,
 5. medicine,
 6. done

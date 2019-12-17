@@ -65,23 +65,23 @@
                   </span>
                 </td>
                 <td>
+                  @role('admin')
+                  <button class="btn btn-warning btn-sm reset" data-id="{{ $data['id'] }}" data-no-antrian="{{ $data->no_antrian }}" data-message="register"> <i class="fa fa-refresh"></i> Reset</button>
+                  @endrole
                   @if ($data['status_check'] == 'register')
-                    {{-- <form action="{{ route('data-register.update.status') }}" method="post">
-                      @csrf --}}
-                      <button class="btn btn-warning cek" data-id="{{ $data['id'] }}" data-no-antrian="{{ $data->no_antrian }}" > <i class="fa fa-check-square"></i> Validasi</button>
-                    {{-- </form> --}}
+                      <button class="btn btn-warning btn-sm cek" data-id="{{ $data['id'] }}" data-no-antrian="{{ $data->no_antrian }}" data-message="verified"> <i class="fa fa-check-square"></i> Validasi</button>
                   @elseif ($data['status_check'] == 'verified')
-                    <a href="{{ route('data-register.edit', $data) }}" class="btn btn-warning"><i class="fa fa-check-square"></i> Diagnosa</a>
+                    <a href="{{ route('data-register.edit', $data) }}" class="btn btn-warning btn-sm"><i class="fa fa-check-square"></i> Diagnosa</a>
                   @elseif ($data['status_check'] == 'un_verified')
-                    <button class="btn btn-danger">Tidak Ada</button>
+                    <button class="btn btn-danger btn-sm" disabled><i class="fa fa-times"></i> Tidak Ada</button>
                   @elseif ($data['status_check'] == 'diagnosis')
-                    <button class="btn btn-danger">Diagnosa</button>
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-file"></i> Diagnosa</button>
                   @elseif ($data['status_check'] == 'check_doctor')
-                    <button class="btn btn-warning">Cek Dokter</button>
+                    <a href="{{ route('dokter.data-register.check', $data) }}" class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Cek Dokter</a>
                   @elseif ($data['status_check'] == 'medicine')
-                    <button class="btn btn-warning">Apotek</button>
+                    <button class="btn btn-warning btn-sm"><i class="fa fa-capsules"></i> Apotek</button>
                   @elseif ($data['status_check'] == 'done')
-                    <button class="btn btn-success">Selesai</button>
+                    <button class="btn btn-success btn-sm"><i class="fa fa-clipboard-check"></i> Selesai</button>
                   @endif
                 </td>
               </tr>
@@ -102,6 +102,7 @@
     $('button.cek').on('click', function(){
         var id = $(this).attr('data-id');
         var noAntrian = $(this).attr('data-no-antrian');
+        var message = $(this).attr('data-message');
         swal({
           title: "Apakah No Antrian "+ noAntrian + " Hadir",
           type: "warning",
@@ -116,7 +117,7 @@
                type: "POST",
                dataType: "HTML",
                url:"{{ route('data-register.update.status') }}",
-               data:{ id:id, message:"verified", _token:'{{ csrf_token() }}' },
+               data:{ id:id, message:message, _token:'{{ csrf_token() }}' },
                success:function(data){
                   if (data == 'berhasil') {
                     swal({

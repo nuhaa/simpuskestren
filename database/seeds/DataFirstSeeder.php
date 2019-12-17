@@ -17,6 +17,20 @@ class DataFirstSeeder extends Seeder
     {
         ListMedicine::insert([
           [ 'medicine_id' => 1, 'price' => 10000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 2, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 3, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 4, 'price' => 10000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 5, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 6, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 7, 'price' => 10000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 8, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 9, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 10, 'price' => 10000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 11, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 12, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 13, 'price' => 10000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 14, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
+          [ 'medicine_id' => 15, 'price' => 20000, 'date_buy' => '2019-10-10 00:00:00', 'date_expired' => '2021-10-10 00:00:00', 'information' => 'tes', 'stock' => 100, 'status' => 'available', 'created_at' => Carbon::now() ],
         ]);
 
         Schedule::insert([

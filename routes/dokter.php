@@ -11,3 +11,5 @@ Route::resource('/listmedicine', 'ListMedicineController', [ 'names' => 'dokter.
 Route::resource('/medicine', 'MedicineController', [ 'names' => 'dokter.medicine' ]);
 Route::resource('/schedule', 'ScheduleController', [ 'names' => 'dokter.schedule' ]);
 Route::resource('/data-register', 'RegistrationController', [ 'names' => 'dokter.data-register' ]);
+Route::get('/data-register/{id}/check', 'RegistrationController@check')->name('dokter.data-register.check');
+Route::post('/data-register/update-dokter', 'RegistrationController@updateDokter')->name('dokter.data-register.update-dokter');

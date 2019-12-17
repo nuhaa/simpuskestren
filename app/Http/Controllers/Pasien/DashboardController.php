@@ -77,7 +77,7 @@ class DashboardController extends Controller
     {
       $userId         = $request->userId;
       $poliId         = $request->poliId;
-      $noAntrian      = $request->noAntrian+1;
+      $noAntrian      = $request->noAntrian;
       $tanggalPeriksa = $request->tanggalPeriksa;
       $jamAkhirStart  = $request->jamAkhirStart;
       $jamAkhirEnd    = $request->jamAkhirEnd;
