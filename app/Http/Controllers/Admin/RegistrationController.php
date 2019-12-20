@@ -168,6 +168,7 @@ class RegistrationController extends Controller
         $register->update([
             'status_check' => $message,
         ]);
+        return "berhasil";
     }
 
     public function updateDokter(Request $request)
