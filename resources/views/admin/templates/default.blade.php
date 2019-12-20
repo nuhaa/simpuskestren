@@ -22,9 +22,9 @@
     </section>
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  {{-- <footer class="main-footer">
     @include('admin.templates.partials._footer')
-  </footer>
+  </footer> --}}
 
   <div class="control-sidebar-bg"></div>
 </div>

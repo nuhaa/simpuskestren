@@ -38,11 +38,15 @@
                       {{ $medicine->name }}
                   @endforeach
                 </td>
-                <td>Rp. {{ format_rupiah($listMedicine->price) }}</td>
-                <td>{{ $listMedicine->date_buy }}</td>
-                <td>{{ $listMedicine->date_expired }}</td>
+                <td>{{ format_rupiah($listMedicine->price) }}</td>
+                <td>{{ \Carbon\Carbon::parse($listMedicine->date_buy)->format('d/m/Y') }}</td>
+                <td>{{ \Carbon\Carbon::parse($listMedicine->date_expired)->format('d/m/Y') }}</td>
                 <td>{{ $listMedicine->stock }}</td>
-                <td>{{ $listMedicine->status }}</td>
+                <td>
+                  <span class="label {{ ($listMedicine->status) == 'sold' ? 'label-danger' : (($listMedicine->status) == 'available' ? 'label-success' : 'label-warning') }}">
+                    {{ $listMedicine->status }}
+                  </span>
+                </td>
                 <td>
                   <a href="{{ route('listmedicine.edit', $listMedicine) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('role.destroy', $listMedicine->id) }}" class="btn btn-danger">Delete</a> --}}

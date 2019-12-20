@@ -7,16 +7,15 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
-              Daftar Stok Obat
-              <a href="{{ route('room.create') }}" class="btn bg-purple btn-sm" style="float:right">Tambahkan Obat</a>
+              Data Ruang
+              <a href="{{ route('room.create') }}" class="btn bg-purple btn-sm" style="float:right">Tambahkan Ruang</a>
           </h3>
         </div>
         <div class="box-body">
           <table class="table table-bordered">
             <tr>
               <th style="width:10px">No</th>
-              <th>Obat</th>
-              <th>Harga</th>
+              <th>Ruang</th>
               <th>Action</th>
             </tr>
             @php

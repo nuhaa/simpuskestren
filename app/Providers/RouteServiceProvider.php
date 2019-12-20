@@ -124,7 +124,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web', 'auth', 'role:apotek')
              ->prefix('apotek')
-             ->namespace($this->namespace . '\Apotek')
+             ->namespace($this->namespace . '\Admin')
              ->group(base_path('routes/apotek.php'));
     }
 

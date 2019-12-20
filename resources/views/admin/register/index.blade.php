@@ -79,7 +79,9 @@
                   @elseif ($data['status_check'] == 'check_doctor')
                     <a href="{{ route('dokter.data-register.check', $data) }}" class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Cek Dokter</a>
                   @elseif ($data['status_check'] == 'medicine')
-                    <button class="btn btn-warning btn-sm"><i class="fa fa-capsules"></i> Apotek</button>
+                    <a href="{{ route('apotek.data-register.medicine', $data) }}" class="btn btn-warning btn-sm">
+                      <i class="fa fa-heartbeat"></i> Berikan Obat
+                    </a>
                   @elseif ($data['status_check'] == 'done')
                     <button class="btn btn-success btn-sm"><i class="fa fa-clipboard-check"></i> Selesai</button>
                   @endif

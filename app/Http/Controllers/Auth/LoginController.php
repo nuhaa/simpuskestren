@@ -56,5 +56,8 @@ class LoginController extends Controller
         if ($user->hasRole('dokter')) {
           return redirect()->route('dokter.index');
         }
+        if ($user->hasRole('apotek')) {
+          return redirect()->route('apotek.index');
+        }
     }
 }

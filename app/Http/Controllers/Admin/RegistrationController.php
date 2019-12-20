@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,7 @@ use App\Models\Schedule;
 use App\Models\ListMedicine;
 use App\Models\MedicalRecord;
 use App\Models\MedicalRecordsListMedicine;
+use App\Models\Medicine;
 
 class RegistrationController extends Controller
 {
@@ -95,12 +97,6 @@ class RegistrationController extends Controller
         return view('admin.register.edit', compact('register', 'daftarDokters'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function check($id)
     {
         /*prepare data*/
@@ -114,6 +110,33 @@ class RegistrationController extends Controller
         return view('admin.register.dokterCheck', compact('register', 'medicines'));
     }
 
+    public function medicine($id)
+    {
+        /*prepare data*/
+        $register = Register::with('polies','users','medicalRecords')
+                                ->where('date_check', date('Y-m-d'))
+                                ->where('id', $id)
+                                ->first();
+        $medicalRecord = $register->medicalRecords->first();
+        $ids = $register->medicalRecords->first()->MedicalRecordsListMedicines;
+        // dd($ids);
+        // $medicineName = array();
+        $medicineName = [];
+        foreach ($ids as $isi) {
+           $medicine_id = $isi['medicine_id'];
+           $listMedicineId = $isi->pivot['list_medicine_id'];
+           $medicine = Medicine::where('id', $medicine_id)
+                               ->first();
+           $listMedicine = ListMedicine::where('id', $listMedicineId)
+                               ->first();
+           $medicineName[] = ['name' => $medicine->name." (".$medicine->aturan_pakai.")",
+                              'price' => $listMedicine->price];
+           // $medicineName['price'][] = ;
+        }
+        // dd($medicineName);
+        return view('admin.register.apotek', compact('register','medicalRecord','medicineName'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -123,7 +146,7 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
+
     }
 
     /**

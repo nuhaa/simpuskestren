@@ -20,7 +20,8 @@
        --}}
       <li class="header">MAIN NAVIGATION</li>
       <li class='{{ Request::path() == "admin/dashboard" ? "active" : "" }}' ><a href="{{ route('admin.index') }}"><i class="fa fa-angle-double-right"></i> <span>Dashboard</span></a></li>
-      <li class="treeview {{ (Request::is('admin/role/*') or Request::is('admin/role') or Request::is('admin/permission/*')  or Request::is('admin/permission') or Request::is('admin/position/*') or Request::is('admin/position') or Request::is('admin/poly/*') or Request::is('admin/poly') or Request::is('admin/medicine/*') or Request::is('admin/medicine') or Request::is('admin/room/*') or Request::is('admin/room') )  ? "menu-open" : "" }}">
+      @role('admin' or 'dokter')
+      <li class="treeview {{ (Request::is('admin/role/*') or Request::is('admin/role') or Request::is('admin/permission/*')  or Request::is('admin/permission') or Request::is('admin/position/*') or Request::is('admin/position') or Request::is('admin/poly/*') or Request::is('admin/poly') or Request::is('dokter/poly/*') or Request::is('dokter/poly/') or Request::is('admin/medicine/*') or Request::is('admin/medicine') or Request::is('dokter/medicine/*') or Request::is('dokter/medicine') or Request::is('admin/room/*') or Request::is('admin/room') )  ? "menu-open" : "" }}">
           <a href="#">
             <i class="fa fa-angle-double-right"></i>
             <span>Data Master</span>
@@ -43,17 +44,24 @@
             @endrole
           </ul>
         </li>
+        @endrole
+
         @role('admin')
         <li class='{{ Request::path() == "admin/user" ? "active" : "" }}' ><a href="{{ route('user.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Pengguna</span></a></li>
         <li class='{{ Request::path() == "admin/listmedicine" ? "active" : "" }}' ><a href="{{ route('listmedicine.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Obat</span></a></li>
         <li class='{{ Request::path() == "admin/schedule" ? "active" : "" }}' ><a href="{{ route('schedule.index') }}"><i class="fa fa-angle-double-right"></i> <span>Jadwal Dokter</span></a></li>
         <li class='{{ Request::path() == "admin/data-register" ? "active" : "" }}' ><a href="{{ route('data-register.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Pendaftaran</span></a></li>
-
         @endrole
+
         @role('dokter')
         <li class='{{ Request::path() == "dokter/listmedicine" ? "active" : "" }}' ><a href="{{ route('dokter.listmedicine.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Obat</span></a></li>
         <li class='{{ Request::path() == "dokter/schedule" ? "active" : "" }}' ><a href="{{ route('dokter.schedule.index') }}"><i class="fa fa-angle-double-right"></i> <span>Jadwal Dokter</span></a></li>
         <li class='{{ Request::path() == "dokter/data-register" ? "active" : "" }}' ><a href="{{ route('dokter.data-register.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Pendaftaran</span></a></li>
+        @endrole
+
+        @role('apotek')
+        <li class='{{ Request::path() == "apotek/listmedicine" ? "active" : "" }}' ><a href="{{ route('apotek.listmedicine.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Obat</span></a></li>
+        <li class='{{ Request::path() == "apotek/data-register" ? "active" : "" }}' ><a href="{{ route('apotek.data-register.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Pendaftaran</span></a></li>
         @endrole
         {{-- <li class='{{ Request::path() == "admin/medicine-stok" ? "active" : "" }}' ><a href="{{ route('admin.medicine.stok') }}"><i class="fa fa-angle-double-right"></i> <span>Stok Obat</span></a></li> --}}
       {{-- <li class='{{ (Request::is('admin/category/*') or Request::is('admin/category'))  ? "active" : "" }}' ><a href="{{ route('category.index') }}"><i class="fa fa-angle-double-right"></i> <span>Category</span></a></li>
