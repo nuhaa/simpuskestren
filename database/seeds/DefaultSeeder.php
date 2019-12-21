@@ -25,7 +25,8 @@ class DefaultSeeder extends Seeder
           'gender' => 'laki_laki',
           'nis' => null,
           'created_at' => Carbon::now(),
-        ],[
+        ],
+        /*[
           'name' => 'Rekam Medis',
           'email' => 'rekam_medis@simpuskestren.com',
           'password' => bcrypt('12345678'),
@@ -35,9 +36,10 @@ class DefaultSeeder extends Seeder
           'gender' => 'laki_laki',
           'nis' => null,
           'created_at' => Carbon::now(),
-        ],[
-          'name' => 'Dokter Umum',
-          'email' => 'dokter_umum@simpuskestren.com',
+        ],*/
+        [
+          'name' => 'Dokter Pertama',
+          'email' => 'dokter_pertama@simpuskestren.com',
           'password' => bcrypt('12345678'),
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
@@ -46,8 +48,8 @@ class DefaultSeeder extends Seeder
           'nis' => null,
           'created_at' => Carbon::now(),
         ],[
-          'name' => 'Dokter KIA',
-          'email' => 'dokter_kia@simpuskestren.com',
+          'name' => 'Dokter Kedua',
+          'email' => 'dokter_kedua@simpuskestren.com',
           'password' => bcrypt('12345678'),
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
@@ -56,8 +58,8 @@ class DefaultSeeder extends Seeder
           'nis' => null,
           'created_at' => Carbon::now(),
         ],[
-          'name' => 'Dokter Gigi',
-          'email' => 'dokter_gigi@simpuskestren.com',
+          'name' => 'Dokter Ketiga',
+          'email' => 'dokter_ketiga@simpuskestren.com',
           'password' => bcrypt('12345678'),
           'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
           'phone' => '085711111111',
