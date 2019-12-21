@@ -30,7 +30,7 @@
               Jumlah Daftar
             </h1>
             <h2 class="subtitle">
-              0
+              {{ $daftar }}
             </h2>
           </div>
         </div>
@@ -44,7 +44,7 @@
               Jumlah Rekam Medis
             </h1>
             <h2 class="subtitle">
-              0
+              {{ $rekamMedis }}
             </h2>
           </div>
         </div>

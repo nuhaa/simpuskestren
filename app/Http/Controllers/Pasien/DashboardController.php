@@ -12,8 +12,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Alert::success('pesan yang ingin disampaikan', 'Judul Pesan')->persistent("Close");
-        return view('pasien.index');
+        $user = auth()->user();
+
+        $daftar = Register::where('user_id', $user->id)
+                        ->count();
+        $rekamMedis = Register::where('user_id', $user->id)
+                        ->where('status_check', 'done')
+                        ->count();
+        return view('pasien.index', compact('daftar','rekamMedis'));
     }
 
     public function formTanggal(Request $request)
