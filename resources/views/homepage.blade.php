@@ -77,8 +77,39 @@
             </p>
         </button>
         </div>
+        <div class="column is-12">
+          <div class="columns for-first">
+            <div class="column is-4">
+              <section class="hero is-small is-danger is-bold hero-1">
+                <div class="hero-body">
+                  <div class="container">
+                    <center><h1 class="title"><u>Poli Umum</u> <br>Antrian #{{ $umum }} </h1><center>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="column is-4">
+              <section class="hero is-small is-warning is-bold hero-2">
+                <div class="hero-body">
+                  <div class="container">
+                    <center><h1 class="title"><u>Poli Gigi</u> <br>Antrian #{{ $gigi }} </h1><center>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="column is-4">
+              <section class="hero is-small is-primary is-bold hero-3">
+                <div class="hero-body">
+                  <div class="container">
+                    <center><h1 class="title"><u>Poli KIA</u> <br>Antrian #{{ $kia }} </h1><center>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
         <div class="column is-6">
-          <section class="hero is-medium is-primary is-bold">
+          <section class="hero is-small is-primary is-bold">
             <div class="hero-body">
               <div class="container">
                 <h1 class="title">
@@ -93,7 +124,7 @@
           </section>
         </div>
         <div class="column is-6">
-          <section class="hero is-medium is-warning is-bold">
+          <section class="hero is-small is-warning is-bold">
             <div class="hero-body">
               <div class="container">
                 <h1 class="title">

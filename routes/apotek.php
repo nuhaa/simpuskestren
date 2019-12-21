@@ -10,3 +10,4 @@ Route::resource('/listmedicine', 'ListMedicineController', [ 'names' => 'apotek.
 Route::resource('/medicine', 'MedicineController', [ 'names' => 'apotek.medicine' ]);
 Route::resource('/data-register', 'RegistrationController', [ 'names' => 'apotek.data-register' ]);
 Route::get('/data-register/{id}/medicine', 'RegistrationController@medicine')->name('apotek.data-register.medicine');
+Route::post('/update-status', 'RegistrationController@updateApotek')->name('apotek.update.status');

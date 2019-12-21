@@ -11,24 +11,18 @@
     @foreach ($register->medicalRecords as $val)
       <input type="hidden" name="medical_record_id" value="{{ $val->id }}">
     @endforeach
-    <input type="hidden" name="register_id" value="{{ $register->id }}">
-    <input type="hidden" name="status_check" value="medicine">
     <div class="box-body">
       <div class="form-group">
         <label for="" class="col-sm-3 control-label">Nama</label>
         <label for="" class="col-sm-9 control-label">
-          @foreach ($register->users as $user)
-              {{ $user['name'] }}
-          @endforeach
+          {{ $user->name }}
         </label>
       </div>
       <br>
       <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <label for="" class="col-sm-3 control-label">Poli Tujuan</label>
         <label for="" class="col-sm-9 control-label">
-          @foreach ($register->polies as $poli)
-              Poli {{ $poli['name'] }}
-          @endforeach
+          Poli {{ $poly->name }}
         </label>
       </div>
       <br>
@@ -99,7 +93,7 @@
       @csrf --}}
       <div class="box-footer">
         <a href="{{ route('dokter.data-register.index') }}" class="btn btn-default">Cancel</a>
-        <button type="button" class="btn bg-purple pull-right" id="selesai">Selesai</button>
+        <button type="button" class="btn bg-purple pull-right" data-name="{{ $user->name }}" data-poly="{{ $poly->name }}" id="selesai">Selesai</button>
       </div>
     {{-- </form> --}}
   </div>
@@ -110,26 +104,40 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script type="text/javascript">
     $('button#selesai').on('click', function(){
-        var href  = $(this).attr('href');
-        var title = $(this).data('title');
-
+        // var href  = $(this).attr('href');
+        var user = $(this).attr('data-name');
+        var poly = $(this).attr('data-poly');
+        console.log(user);
         Swal.fire({
-          title: 'Delete this '+ title +' schedule',
-          text: "One deleted, you will not be able to recover this category",
+          title: 'Perhatian!',
+          text: 'Apakah '+ user +' dari Poli ' + poly + ' Sudah Membayar dan Mendapatkan Obat',
           type: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+          confirmButtonText: 'Ya, Sudah'
         }).then((result) => {
           if (result.value) {
-            document.getElementById('deleteForm').action = href;
-            document.getElementById('deleteForm').submit();
-            Swal.fire(
-              'Deleted!',
-              'Your Role has been deleted.',
-              'success'
-            )
+            $.ajax({
+               type: "POST",
+               dataType: "HTML",
+               // dataType: "JSON",
+               url:"{{ route('apotek.update.status') }}",
+               data:{ registerId:{{ $register->id }}, status_check:"done", _token: '{{ csrf_token() }}' },
+               success:function(data){
+                  if (data == 'berhasil') {
+                    swal.fire({
+                        title: "Berhasil",
+                        text: "Pasien Telah Selesai Dilayani",
+                        type: "success"
+                    }).then(function() {
+                        window.location = "{{ route('apotek.data-register.index') }}";
+                    });
+                  } else {
+                    swal("Gagal", "Error 1.1", "error");
+                  }
+               }
+            });
           }
         });
     });

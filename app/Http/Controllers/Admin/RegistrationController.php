@@ -117,6 +117,8 @@ class RegistrationController extends Controller
                                 ->where('date_check', date('Y-m-d'))
                                 ->where('id', $id)
                                 ->first();
+        $user = $register->users->first();
+        $poly = $register->polies->first();
         $medicalRecord = $register->medicalRecords->first();
         $ids = $register->medicalRecords->first()->MedicalRecordsListMedicines;
         // dd($ids);
@@ -134,7 +136,7 @@ class RegistrationController extends Controller
            // $medicineName['price'][] = ;
         }
         // dd($medicineName);
-        return view('admin.register.apotek', compact('register','medicalRecord','medicineName'));
+        return view('admin.register.apotek', compact('register','medicalRecord','medicineName', 'user', 'poly'));
     }
 
     /**
@@ -171,34 +173,6 @@ class RegistrationController extends Controller
         return "berhasil";
     }
 
-    public function updateDokter(Request $request)
-    {
-       $this->validate($request, [
-           'doctor_diagnosis' => 'required',
-       ]);
-       $register_id       = $request->register_id;
-       $message           = $request->status_check;
-       $medical_record_id = $request->medical_record_id;
-       $doctor_diagnosis  = $request->doctor_diagnosis;
-       $register = Register::find($register_id);
-       $register->update([
-           'status_check' => $message
-       ]);
-       $medical_records = MedicalRecord::find($medical_record_id);
-       $medical_records->update([
-           'doctor_diagnosis' => $doctor_diagnosis
-       ]);
-
-       for ($i=0; $i < count($request->list_medicines); $i++) {
-           $val[] = [
-              'medical_record_id' => $medical_record_id,
-              'list_medicine_id' => $request->list_medicines[$i]
-           ];
-       }
-       MedicalRecordsListMedicine::insert($val);
-       return redirect()->route('dokter.data-register.index')->with('success', 'Berhasil Memberikan Tindakan untuk Pasien');
-    }
-
     public function record(Request $request)
     {
         $this->validate($request, [
@@ -229,5 +203,56 @@ class RegistrationController extends Controller
         ]);
 
         return redirect()->route('data-register.index')->with('success', 'Berhasil Melakukan Diagnosa Awal');
+    }
+
+    public function updateDokter(Request $request)
+    {
+       $this->validate($request, [
+           'doctor_diagnosis' => 'required',
+       ]);
+       $register_id       = $request->register_id;
+       $message           = $request->status_check;
+       $medical_record_id = $request->medical_record_id;
+       $doctor_diagnosis  = $request->doctor_diagnosis;
+       $register = Register::find($register_id);
+       $register->update([
+           'status_check' => $message
+       ]);
+       $medical_records = MedicalRecord::find($medical_record_id);
+       $medical_records->update([
+           'doctor_diagnosis' => $doctor_diagnosis
+       ]);
+
+       for ($i=0; $i < count($request->list_medicines); $i++) {
+           $val[] = [
+              'medical_record_id' => $medical_record_id,
+              'list_medicine_id' => $request->list_medicines[$i]
+           ];
+       }
+       MedicalRecordsListMedicine::insert($val);
+       return redirect()->route('dokter.data-register.index')->with('success', 'Berhasil Memberikan Tindakan untuk Pasien');
+    }
+
+    public function updateApotek(Request $request)
+    {
+        $statusCheck = $request->status_check;
+        $registerId  = $request->registerId;
+        $register = Register::find($registerId);
+        $register->update([
+            'status_check' => $statusCheck
+        ]);
+        $cekRegister = Register::with('medicalRecords')
+                                ->where('id', $registerId)
+                                ->first();
+        $ids = $cekRegister->medicalRecords->first()->MedicalRecordsListMedicines;
+        foreach ($ids as $isi) {
+           $listMedicineId = $isi->pivot['list_medicine_id'];
+           $listMedicine = ListMedicine::find($listMedicineId);
+           $stock = ($listMedicine->stock)-1;
+           $listMedicine->update([
+              'stock' => $stock
+           ]);
+        }
+        return "berhasil";
     }
 }
