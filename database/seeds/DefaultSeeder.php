@@ -26,7 +26,7 @@ class DefaultSeeder extends Seeder
           'nis' => null,
           'created_at' => Carbon::now(),
         ],
-        /*[
+        [
           'name' => 'Rekam Medis',
           'email' => 'rekam_medis@simpuskestren.com',
           'password' => bcrypt('12345678'),
@@ -36,7 +36,7 @@ class DefaultSeeder extends Seeder
           'gender' => 'laki_laki',
           'nis' => null,
           'created_at' => Carbon::now(),
-        ],*/
+        ],
         [
           'name' => 'Dokter Pertama',
           'email' => 'dokter_pertama@simpuskestren.com',
