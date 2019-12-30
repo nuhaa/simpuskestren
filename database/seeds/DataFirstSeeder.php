@@ -59,9 +59,9 @@ class DataFirstSeeder extends Seeder
         ]);
 
         Register::insert([
-          [ 'user_id' => 7, 'poly_id' => 1, 'date_check' => '2019-12-15', 'time_check_start' => '07:00:00', 'time_check_end' => '07:10:00', 'status_check' => 'register', 'no_antrian' => 1, 'created_at' => Carbon::now() ],
-          [ 'user_id' => 8, 'poly_id' => 2, 'date_check' => '2019-12-15', 'time_check_start' => '07:00:00', 'time_check_end' => '07:10:00', 'status_check' => 'register', 'no_antrian' => 1, 'created_at' => Carbon::now() ],
-          [ 'user_id' => 7, 'poly_id' => 2, 'date_check' => '2019-12-15', 'time_check_start' => '07:10:00', 'time_check_end' => '07:20:00', 'status_check' => 'register', 'no_antrian' => 2, 'created_at' => Carbon::now() ],
+          [ 'user_id' => 6, 'poly_id' => 1, 'date_check' => '2019-12-15', 'time_check_start' => '07:00:00', 'time_check_end' => '07:10:00', 'status_check' => 'register', 'no_antrian' => 1, 'created_at' => Carbon::now() ],
+          [ 'user_id' => 7, 'poly_id' => 2, 'date_check' => '2019-12-15', 'time_check_start' => '07:00:00', 'time_check_end' => '07:10:00', 'status_check' => 'register', 'no_antrian' => 1, 'created_at' => Carbon::now() ],
+          [ 'user_id' => 6, 'poly_id' => 2, 'date_check' => '2019-12-15', 'time_check_start' => '07:10:00', 'time_check_end' => '07:20:00', 'status_check' => 'register', 'no_antrian' => 2, 'created_at' => Carbon::now() ],
 
         ]);
     }

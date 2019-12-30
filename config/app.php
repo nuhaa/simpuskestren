@@ -177,6 +177,7 @@ return [
         App\Providers\PermissionsServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -230,7 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-        
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ],
 
 ];

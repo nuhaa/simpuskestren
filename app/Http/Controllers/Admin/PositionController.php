@@ -25,12 +25,10 @@ class PositionController extends Controller
     /* data position */
     public function position()
     {
-        // dd("asd");
         $positions = Position::orderBy('name', 'asc');
         return Datatables::of($positions)->addColumn('action', function($positions){
-            return '<a href="" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>';
+            return '<a href="position/'.$positions->id.'/edit" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>';
         })->rawColumns(['action'])->make(true);
-
     }
 
     /**
@@ -40,7 +38,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.position.create');
     }
 
     /**
@@ -51,7 +49,15 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+
+        Position::create([
+            'name' => ucwords($request->name),
+        ]);
+
+        return redirect()->route('position.index')->with('success', 'Berhasil Menambahkan Master Jabatan');
     }
 
     /**
@@ -71,9 +77,9 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Position $position)
     {
-        //
+        return view('admin.position.edit', compact('position'));
     }
 
     /**
@@ -83,9 +89,17 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Position $position)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|min:3',
+        ]);
+
+        $position->update([
+            'name' => ucwords($request->name)
+        ]);
+
+        return redirect()->route('position.index')->with('success', 'Berhasil Memperbaharui Master Jabatan');
     }
 
     /**

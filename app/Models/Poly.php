@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Poly extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+    ];
 }

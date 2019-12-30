@@ -28,7 +28,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.medicine.create');
     }
 
     /**
@@ -39,7 +39,21 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|min:3',
+            'aturan_pakai' => 'required|min:5',
+            'sasaran' => 'required|min:4',
+            'kegunaan' => 'required|min:15',
+        ]);
+
+        Medicine::create([
+            'name' => ucwords($request->name),
+            'aturan_pakai' => ucwords($request->aturan_pakai),
+            'sasaran' => ucwords($request->sasaran),
+            'kegunaan' => ucwords($request->kegunaan),
+        ]);
+
+        return redirect()->route('medicine.index')->with('success', 'Berhasil Mencambahkan Master Obat');
     }
 
     /**
@@ -59,9 +73,9 @@ class MedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Medicine $medicine)
     {
-        //
+        return view('admin.medicine.edit', compact('medicine'));
     }
 
     /**
@@ -71,9 +85,24 @@ class MedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Medicine $medicine)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'aturan_pakai' => 'required|min:5',
+            'sasaran' => 'required|min:4',
+            'kegunaan' => 'required|min:15',
+        ]);
+
+        $medicine->update([
+          'name' => ucwords($request->name),
+          'aturan_pakai' => ucwords($request->aturan_pakai),
+          'sasaran' => ucwords($request->sasaran),
+          'kegunaan' => ucwords($request->kegunaan),
+        ]);
+
+        $message = 'Berhasil Memperbaharui Obat '. $request->name;
+        return redirect()->route('medicine.index')->with('success', $message);
     }
 
     /**

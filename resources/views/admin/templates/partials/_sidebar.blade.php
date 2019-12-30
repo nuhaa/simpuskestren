@@ -32,7 +32,7 @@
           <ul class="treeview-menu" style="{{ (Request::is('admin/role/*') or Request::is('admin/role') or Request::is('admin/permission/*')  or Request::is('admin/permission') or Request::is('admin/position/*') or Request::is('admin/position') or Request::is('admin/poly/*') or Request::is('admin/poly') or Request::is('admin/medicine/*') or Request::is('admin/medicine') or Request::is('admin/room/*') or Request::is('admin/room') )  ? "display:block" : "" }}">
             @role('admin')
             <li><a href="{{ route('role.index') }}"><i class="fa fa-angle-right"></i> Level </a></li>
-            <li><a href="{{ route('permission.index') }}"><i class="fa fa-angle-right"></i> Hak Akses</a></li>
+            {{-- <li><a href="{{ route('permission.index') }}"><i class="fa fa-angle-right"></i> Hak Akses</a></li> --}}
             <li><a href="{{ route('position.index') }}"><i class="fa fa-angle-right"></i> Jabatan</a></li>
             <li><a href="{{ route('room.index') }}"><i class="fa fa-angle-right"></i> Ruang</a></li>
             <li><a href="{{ route('poly.index') }}"><i class="fa fa-angle-right"></i> Poli</a></li>

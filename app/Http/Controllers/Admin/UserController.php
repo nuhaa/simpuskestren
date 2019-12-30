@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Position;
 // use App\Models\Role;
 
 class UserController extends Controller
@@ -30,7 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::orderBy('id')->get();
+        $positions = Position::orderBy('id')->get();
+        return view('admin.user.create', compact('roles', 'positions'));
     }
 
     /**
@@ -41,7 +45,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'address' => 'required',
+            'jabatan' => 'required',
+            'gender' => 'required',
+            'status_pendaftaran' => 'required',
+            'phone' => 'required',
+            'role_id' => 'required',
+        ]);
+
+        $userInsert = User::create([
+            'name' => ucwords($request->name),
+            'nis' => $request->nis,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'address' => ucfirst($request->address),
+            'jabatan' => $request->jabatan,
+            'gender' => $request->gender,
+            'status_pendaftaran' => $request->status_pendaftaran,
+            'phone' => $request->phone,
+        ]);
+
+        $roleId = $request->role_id;
+
+        $userInsert->roles()->attach($roleId);
+
+        return redirect()->route('user.index')->with('success', 'Berhasil Menambahkan Pengguna');
     }
 
     /**

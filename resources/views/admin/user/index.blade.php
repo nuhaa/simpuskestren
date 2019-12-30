@@ -42,12 +42,12 @@
                 <td>
                   <a href="{{ route('user.edit', $user) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('role.destroy', $user->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $user->name }}' href={{ route('user.destroy', $user) }}> <i class="fa fa-trash"></i> Delete</button>
+                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $user->name }}' href={{ route('user.destroy', $user) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
                     <input type="submit" style="display:none" value="">
-                  </form>
+                  </form> --}}
                 </td>
               </tr>
             @endforeach

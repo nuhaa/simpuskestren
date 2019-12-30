@@ -32,12 +32,12 @@
                 <td>
                   <a href="{{ route('poly.edit', $poly) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('poly.destroy', $poly->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $poly->name }}' href={{ route('poly.destroy', $poly) }}> <i class="fa fa-trash"></i> Delete</button>
+                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $poly->name }}' href={{ route('poly.destroy', $poly) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
                     <input type="submit" style="display:none" value="">
-                  </form>
+                  </form> --}}
                 </td>
               </tr>
             @endforeach
@@ -50,32 +50,3 @@
     </div>
   </div>
 @endsection
-@push('scripts')
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script type="text/javascript">
-    $('button#delete').on('click', function(){
-        var href  = $(this).attr('href');
-        var title = $(this).data('title');
-
-        Swal.fire({
-          title: 'Delete this '+ title +' poly',
-          text: "One deleted, you will not be able to recover this category",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.value) {
-            document.getElementById('deleteForm').action = href;
-            document.getElementById('deleteForm').submit();
-            Swal.fire(
-              'Deleted!',
-              'Your Role has been deleted.',
-              'success'
-            )
-          }
-        });
-    });
-  </script>
-@endpush

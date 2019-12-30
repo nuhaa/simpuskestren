@@ -8,4 +8,5 @@ Route::post('/form-tanggal', 'DashboardController@formTanggal')->name('pasien.fo
 Route::post('/store-antrian', 'DashboardController@storeAntrian')->name('pasien.store.antrian');
 Route::get('/profile', 'ProfileController@index')->name('pasien.profile');
 Route::get('/registration', 'RegistrationController@index')->name('pasien.registration');
+Route::get('/export-pdf', 'RegistrationController@exportAntrian')->name('pasien.export.antrian');
 Route::get('/medical-record', 'MedicalRecordController@index')->name('pasien.medical.record');

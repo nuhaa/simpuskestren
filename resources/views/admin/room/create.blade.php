@@ -4,9 +4,9 @@
 <div class="col-md-8 col-md-offset-2 ">
   <div class="box box-info">
     <div class="box-header with-border">
-      <div class="box-title">Add a Role</div>
+      <div class="box-title">Tambahkan Master Ruang</div>
     </div>
-    <form action="{{ route('role.store') }}" class="from-horizontal" method="post">
+    <form action="{{ route('room.store') }}" class="from-horizontal" method="post">
       @csrf
       <div class="box-body">
         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
@@ -20,23 +20,10 @@
         </div>
       </div>
       <div class="box-footer">
-        <a href="{{ route('role.index') }}" class="btn btn-default">Cancel</a>
-        <button type="submit" class="btn btn-info pull-right">Save</button>
+        <a href="{{ route('room.index') }}" class="btn btn-default">Kembali</a>
+        <button type="submit" class="btn btn-info pull-right">Simpan</button>
       </div>
     </form>
   </div>
 </div>
 @endsection
-
-@push('select2styles')
-<link rel="stylesheet" href="{{ asset('admin/bower_components/select2/dist/css/select2.min.css') }}">
-@endpush
-
-@push('scripts')
-<script src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-<script>
-  $(function(){
-    $('.select2').select2();
-  });
-</script>
-@endpush

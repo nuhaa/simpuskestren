@@ -56,30 +56,5 @@
             ],
         });
     });
-
-    $('button#delete').on('click', function(){
-        var href  = $(this).attr('href');
-        var title = $(this).data('title');
-
-        Swal.fire({
-          title: 'Delete this '+ title +' position',
-          text: "One deleted, you will not be able to recover this category",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.value) {
-            document.getElementById('deleteForm').action = href;
-            document.getElementById('deleteForm').submit();
-            Swal.fire(
-              'Deleted!',
-              'Your Role has been deleted.',
-              'success'
-            )
-          }
-        });
-    });
   </script>
 @endpush

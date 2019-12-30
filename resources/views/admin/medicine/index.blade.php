@@ -38,12 +38,12 @@
                 <td>
                   <a href="{{ route('medicine.edit', $medicine) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('role.destroy', $medicine->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $medicine->name }}' href={{ route('medicine.destroy', $medicine) }}> <i class="fa fa-trash"></i> Delete</button>
+                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $medicine->name }}' href={{ route('medicine.destroy', $medicine) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
                     <input type="submit" style="display:none" value="">
-                  </form>
+                  </form> --}}
                 </td>
               </tr>
             @endforeach

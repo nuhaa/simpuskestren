@@ -28,7 +28,7 @@ class PolyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.poly.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class PolyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+
+        Poly::create([
+            'name' => ucwords($request->name)
+        ]);
+
+        return redirect()->route('poly.index')->with('success', 'Berhasil Menambahkan Master Poli');
     }
 
     /**
@@ -59,9 +67,9 @@ class PolyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Poly $poly)
     {
-        //
+        return view('admin.poly.edit', compact('poly'));
     }
 
     /**
@@ -71,9 +79,17 @@ class PolyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Poly $poly)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+
+        $poly->update([
+            'name' => ucwords($request->name)
+        ]);
+
+        return redirect()->route('poly.index')->with('success', 'Berhasil Memperbaharui Master Poli');
     }
 
     /**

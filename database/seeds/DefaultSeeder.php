@@ -27,17 +27,6 @@ class DefaultSeeder extends Seeder
           'created_at' => Carbon::now(),
         ],
         [
-          'name' => 'Rekam Medis',
-          'email' => 'rekam_medis@simpuskestren.com',
-          'password' => bcrypt('12345678'),
-          'address' => 'Cukir, Kec. Diwek, Kabupaten Jombang',
-          'phone' => '085711111111',
-          'status_pendaftaran' => 'pegawai',
-          'gender' => 'laki_laki',
-          'nis' => null,
-          'created_at' => Carbon::now(),
-        ],
-        [
           'name' => 'Dokter Pertama',
           'email' => 'dokter_pertama@simpuskestren.com',
           'password' => bcrypt('12345678'),
@@ -108,7 +97,6 @@ class DefaultSeeder extends Seeder
 
         Role::insert([
           ['name' => 'admin', 'created_at' => Carbon::now(),],
-          ['name' => 'rekam_medis', 'created_at' => Carbon::now(),],
           ['name' => 'dokter', 'created_at' => Carbon::now(),],
           ['name' => 'apotek', 'created_at' => Carbon::now(),],
           ['name' => 'pasien', 'created_at' => Carbon::now(),],
@@ -131,12 +119,11 @@ class DefaultSeeder extends Seeder
         DB::table('users_roles')->insert([
             ['user_id' => 1, 'role_id' => 1],
             ['user_id' => 2, 'role_id' => 2],
-            ['user_id' => 3, 'role_id' => 3],
-            ['user_id' => 4, 'role_id' => 3],
+            ['user_id' => 3, 'role_id' => 2],
+            ['user_id' => 4, 'role_id' => 2],
             ['user_id' => 5, 'role_id' => 3],
             ['user_id' => 6, 'role_id' => 4],
-            ['user_id' => 7, 'role_id' => 5],
-            ['user_id' => 8, 'role_id' => 5],
+            ['user_id' => 7, 'role_id' => 4],
         ]);
     }
 }

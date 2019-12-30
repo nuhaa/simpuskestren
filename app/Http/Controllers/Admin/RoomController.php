@@ -28,7 +28,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.room.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|min:3',
+        ]);
+
+        Room::create([
+            'name' => ucwords($request->name)
+        ]);
+
+        return redirect()->route('room.index')->with('success', 'Berhasil Menambahkan Master Ruang');
     }
 
     /**
@@ -59,9 +67,9 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Room $room)
     {
-        //
+        return view('admin.room.edit', compact('room'));
     }
 
     /**
@@ -71,9 +79,17 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Room $room)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
+
+        $room->update([
+            'name' => ucwords($request->name)
+        ]);
+
+        return redirect()->route('room.index')->with('success', 'Berhasil Memperbaharui Master Ruang');
     }
 
     /**

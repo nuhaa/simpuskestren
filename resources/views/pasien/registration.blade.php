@@ -60,10 +60,31 @@
                         <button class="modal-button-close delete" aria-label="close"></button>
                     </header>
                     <section class="modal-card-body ">
-                        Wait Qaqa
+                        <center class="is-size-3">Puskestren Tebuireng</center>
+                        <center>Cukir (Depan Masjid Ulil Albab Tebuireng) Diwek Jombang</center>
+                        <center>Telp. (0321) 6973389</center>
+                        <hr style="margin-top:3px;margin-bottom:3px">
+                        @foreach ($data['polies'] as $poli)
+                          @php
+                            $poliName = $poli['name'];
+                          @endphp
+                          <center class="is-size-4"><b>Poli {{ $poli['name'] }}</b></center>
+                        @endforeach
+                        <center class="is-size-1"><b>#{{ $data->no_antrian }}</b></center>
+                        <center><b>Hadir Pada:</b></center>
+                        <center>
+                          <b>
+                          {{ format_hari(\Carbon\Carbon::parse($data->date_check)->format('l')) }},
+                          {{ \Carbon\Carbon::parse($data->date_check)->format('d/m/Y') }}
+                          Jam: {{ $data->time_check_start }} - {{ $data->time_check_end }}
+                          </b>
+                        </center>
                     </section>
                     <footer class="modal-card-foot">
                         <button class="modal-button-close button">Kembali</button>
+                        <a href="{{ route('pasien.export.antrian') }}?poli={{ \Crypt::encrypt($poliName) }}&antrian={{ \Crypt::encrypt($data->no_antrian) }}&hari={{ \Crypt::encrypt($data->date_check) }}&jamMulai={{ \Crypt::encrypt($data->time_check_start) }}&jamSelesai={{ \Crypt::encrypt($data->time_check_end) }}" class="button is-primary">Cetak</a>
+
+                        {{-- <button class="button is-primary cetak" data-poli='{{ $poliName }}' data-antrian="{{ $data->no_antrian }}" data-hari="{{ $data->date_check }}" data-waktu-mulai="{{ $data->time_check_start }}" data-waktu-selesai="{{ $data->time_check_end }}">Cetak</button> --}}
                     </footer>
                 </div>
             </div>
@@ -78,7 +99,7 @@
 @section('script_part')
 <script src="{{ asset('plugin/bulma-modal-fx/js/modal-fx.min.js') }}"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
 
     var rootEl = document.documentElement;
     var reset = getAll('.reload');
@@ -130,6 +151,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function getAll(selector) {
         return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
     }
+
+    $("button.cetak").click(function(){
+        var poli       = $(this).attr('data-poli');
+        var antrian    = $(this).attr('data-antrian');
+        var hari       = $(this).attr('data-hari');
+        var jamMulai   = $(this).attr('data-waktu-mulai');
+        var jamSelesai = $(this).attr('data-waktu-selesai');
+        $.ajax({
+           type: "POST",
+           url:"{{ route('pasien.export.antrian') }}",
+           data:{ poli:poli, antrian:antrian, hari:hari, jamMulai:jamMulai, jamSelesai:jamSelesai, _token: '{{ csrf_token() }}' },
+        });
+    });
 });
 </script>
 @endsection
