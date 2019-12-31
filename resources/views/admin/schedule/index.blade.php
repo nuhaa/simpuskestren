@@ -48,12 +48,12 @@
                 <td>
                   <a href="{{ route('schedule.edit', $schedule) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('schedule.destroy', $schedule->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $schedule->name }}' href={{ route('schedule.destroy', $schedule) }}> <i class="fa fa-trash"></i> Delete</button>
+                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $schedule->name }}' href={{ route('schedule.destroy', $schedule) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
                     <input type="submit" style="display:none" value="">
-                  </form>
+                  </form> --}}
                 </td>
               </tr>
             @endforeach

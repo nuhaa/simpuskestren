@@ -15,4 +15,9 @@ class Schedule extends Model
     {
         return $this->hasMany(Poly::class, 'id', 'poly_id');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'users_roles');
+    }
 }

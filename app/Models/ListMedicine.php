@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ListMedicine extends Model
 {
     protected $fillable = [
-        'stock'
+        'stock', 'medicine_id', 'price', 'date_buy', 'date_expired', 'information', 'status'
     ];
 
     public function medicines()
     {
-        return $this->belongsToMany(Medicine::class, 'list_medicines', 'medicine_id');
+        return $this->belongsTo(Medicine::class, 'medicine_id');
     }
 }

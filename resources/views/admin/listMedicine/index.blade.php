@@ -34,9 +34,7 @@
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>
-                  @foreach ($listMedicine->medicines as $medicine)
-                      {{ $medicine->name }}
-                  @endforeach
+                  {{ $listMedicine->medicines->name }}
                 </td>
                 <td>{{ format_rupiah($listMedicine->price) }}</td>
                 <td>{{ \Carbon\Carbon::parse($listMedicine->date_buy)->format('d/m/Y') }}</td>
@@ -50,12 +48,12 @@
                 <td>
                   <a href="{{ route('listmedicine.edit', $listMedicine) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
                   {{-- <a href="{{ route('role.destroy', $listMedicine->id) }}" class="btn btn-danger">Delete</a> --}}
-                  <button class="btn btn-danger" id='delete' data-title='{{ $listMedicine->name }}' href={{ route('listmedicine.destroy', $listMedicine) }}> <i class="fa fa-trash"></i> Delete</button>
+                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $listMedicine->name }}' href={{ route('listmedicine.destroy', $listMedicine) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
                     <input type="submit" style="display:none" value="">
-                  </form>
+                  </form> --}}
                 </td>
               </tr>
             @endforeach

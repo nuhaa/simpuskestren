@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ListMedicine;
+use App\Models\Medicine;
 
 class ListMedicineController extends Controller
 {
@@ -17,8 +18,8 @@ class ListMedicineController extends Controller
     public function index()
     {
         // $listMedicines = ListMedicine::with('medicines')->paginate(5);
-        $listMedicines = ListMedicine::with('medicines')->paginate(5);
-        // dd($listMedicines);
+        // $listMedicines = ListMedicine::with('medicines')->orderBy('id', 'DESC')->toSql();
+        $listMedicines = ListMedicine::with('medicines')->orderBy('id', 'DESC')->paginate(5);
         return view('admin.listMedicine.index',[
           'listMedicines' => $listMedicines,
         ]);
@@ -31,7 +32,8 @@ class ListMedicineController extends Controller
      */
     public function create()
     {
-        //
+        $medicines = Medicine::orderBy('id')->get();
+        return view('admin.listMedicine.create', compact('medicines'));
     }
 
     /**
@@ -42,7 +44,26 @@ class ListMedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'medicine_id' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'information' => 'required',
+            'date_buy' => 'required|date',
+            'date_expired' => 'required|date',
+        ]);
+
+        ListMedicine::create([
+            'medicine_id' => $request->medicine_id,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'information' => $request->information,
+            'date_buy' => $request->date_buy,
+            'date_expired' => $request->date_expired,
+            'status' => 'available',
+        ]);
+
+        return redirect()->route('listmedicine.index')->with('success', 'Berhasil Menambahkan Obat');
     }
 
     /**
@@ -62,7 +83,7 @@ class ListMedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ListMedicine $listMedicines)
     {
         //
     }
@@ -74,7 +95,7 @@ class ListMedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ListMedicine $listMedicines)
     {
         //
     }
