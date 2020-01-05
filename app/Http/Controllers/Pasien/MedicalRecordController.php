@@ -26,7 +26,7 @@ class MedicalRecordController extends Controller
         // $user = $register->users->get();
         // $poly = $register->polies->first();
         // $medicalRecord = $register->medicalRecords->first();
-        // dd($register);
+        dd($register);
         foreach ($register as $key) {
             foreach($key['medical_records'] as $key2) {
               $isi = $key2['register_id'];
@@ -38,7 +38,7 @@ class MedicalRecordController extends Controller
         //     }
         // }
         $ids = $isi->MedicalRecordsListMedicines;
-        dd($ids);
+        // dd($ids);
         // $medicineName = array();
         $medicineName = [];
         foreach ($ids as $isi) {

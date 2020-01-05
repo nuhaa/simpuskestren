@@ -62,7 +62,7 @@
         <div class="form-group {{ $errors->has('time_start') ? 'has-error' : '' }}">
           <label for="" class="col-sm-2 control-label">Jam Mulai</label>
           <div class="col-md-10">
-            <input type="time" class="form-control" name="time_start">
+            <input type="time" class="form-control" name="time_start" value="{{ old('time_start') }}">
             @if ($errors->has('time_start'))
               <p class="help-block">{{ $errors->first('time_start') }}</p>
             @endif
@@ -72,7 +72,7 @@
         <div class="form-group {{ $errors->has('time_end') ? 'has-error' : '' }}">
           <label for="" class="col-sm-2 control-label">Jam Selesai</label>
           <div class="col-md-10">
-            <input type="time" class="form-control" name="time_end">
+            <input type="time" class="form-control" name="time_end" value="{{ old('time_end') }}">
             @if ($errors->has('time_end'))
               <p class="help-block">{{ $errors->first('time_end') }}</p>
             @endif

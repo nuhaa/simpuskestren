@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+    protected $fillable = [
+        'user_id', 'poly_id', 'day', 'time_start', 'time_end'
+    ];
+
     public function users()
     {
         return $this->hasMany(User::class, 'id', 'user_id');
