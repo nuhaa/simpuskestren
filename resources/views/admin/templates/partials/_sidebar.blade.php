@@ -51,6 +51,7 @@
         <li class='{{ Request::path() == "admin/listmedicine" ? "active" : "" }}' ><a href="{{ route('listmedicine.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Obat</span></a></li>
         <li class='{{ Request::path() == "admin/schedule" ? "active" : "" }}' ><a href="{{ route('schedule.index') }}"><i class="fa fa-angle-double-right"></i> <span>Jadwal Dokter</span></a></li>
         <li class='{{ Request::path() == "admin/data-register" ? "active" : "" }}' ><a href="{{ route('data-register.index') }}"><i class="fa fa-angle-double-right"></i> <span>Data Pendaftaran</span></a></li>
+        <li class='{{ Request::path() == "admin/report" ? "active" : "" }}' ><a href="{{ route('report.data') }}"><i class="fa fa-angle-double-right"></i> <span>Report</span></a></li>
         @endrole
 
         @role('dokter')

@@ -55,7 +55,7 @@
                   @php
                       $cekTanggal = strtotime($data['date_check']);
                       $cekJam = strtotime($data['time_check_end']);
-                      $cekTanggalNow = strtotime(date('m-d-Y'));
+                      $cekTanggalNow = strtotime(date('Y-m-d'));
                       $cekJamNow = strtotime(date('h:i:s'));
                       $cek = $cekTanggal+$cekJam;
                       $cekNow = $cekTanggalNow+$cekJamNow;

@@ -6,7 +6,7 @@
   <article class="message is-primary">
     <div class="message-header">
       <p>Rekam Medis </p>
-      <u>(N/A)</u>
+      <u>({{ $dataCounts }})</u>
       {{-- {{ dd(auth()->user()) }} --}}
     </div>
     <div class="message-body">
@@ -17,20 +17,30 @@
               <th>No</th>
               <th>Tanggal Periksa</th>
               <th>Diagnosa</th>
-              <th>Hasil Periksa</th>
+              <th>Keterangan</th>
               <th>Obat</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
+            @foreach ($register as $val)
             <tr>
-              <td>1.</td>
-              <td>01-01-2020</td>
-              <td>- Hasil Diagnosa <br> - Hasil Diagnosa</td>
-              <td>- Hasil Dokter <br> - Hasil Dokter</td>
-              <td>- Obat 1 <br> - Obat 2</td>
-              <td><button class="button is-primary">Lihat Detail</button></td>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ \Carbon\Carbon::parse($val->date_check)->format('d-m-Y') }}</td>
+              @foreach ($val['medicalRecords'] as $key)
+              <td>
+                  Diagnosa Awal: <u>"{{ $key['first_diagnosis'] }}"</u> <br>
+                  Diagnosa Dokter: <u>"{{ $key['doctor_diagnosis'] }}"</u>
+              </td>
+              <td>{{ $key['keterangan'] }}</td>
+              @endforeach
+              <td>
+              @foreach ($data['nama'] as $key)
+                  - {{ $key['name'] }} ( {{ $key['aturan_pakai'] }} )
+                  <br>
+              @endforeach
+              </td>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

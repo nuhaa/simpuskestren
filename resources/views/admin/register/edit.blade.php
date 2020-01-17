@@ -13,8 +13,8 @@
       <input type="hidden" name="status_check" value="check_doctor">
       <div class="box-body">
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Nama</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Nama</label>
+          <label for="" class="col-sm-9 control-label">
             @foreach ($register->users as $user)
                 {{ $user['name'] }}
             @endforeach
@@ -22,8 +22,8 @@
         </div>
         <br>
         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Poli Tujuan</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Poli Tujuan</label>
+          <label for="" class="col-sm-9 control-label">
             @foreach ($register->polies as $poli)
                 Poli {{ $poli['name'] }}
             @endforeach
@@ -31,20 +31,21 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Tanggal Periksa</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Tanggal Periksa</label>
+          <label for="" class="col-sm-9 control-label">
             {{ format_hari(\Carbon\Carbon::parse($register->date_check)->format('l')). ", ".
-               \Carbon\Carbon::parse($register->date_check)->format('d / M / Y') }}</label>
+               \Carbon\Carbon::parse($register->date_check)->format('d / M / Y') }}
+          </label>
         </div>
         <br>
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Jam Periksa</label>
-          <label for="" class="col-md-10 control-label">{{ $register->time_check_start ." - ". $register->time_check_end }}</label>
+          <label for="" class="col-sm-3 control-label">Jam Periksa</label>
+          <label for="" class="col-md-9 control-label">{{ $register->time_check_start ." - ". $register->time_check_end }}</label>
         </div>
         <br>
         <div class="form-group {{ $errors->has('doctor_id') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Pilih Dokter</label>
-          <div class="col-md-10">
+          <label for="" class="col-sm-3 control-label">Pilih Dokter</label>
+          <div class="col-md-9">
             <select name="doctor_id" class="form-control">
               @foreach ($daftarDokters as $dokter)
                 <option value="{{ $dokter['user_id'] }}">
@@ -61,8 +62,8 @@
         </div>
         <br>
         <div class="form-group {{ $errors->has('keterangan') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Keterangan</label>
-          <div class="col-md-10">
+          <label for="" class="col-sm-3 control-label">Keterangan</label>
+          <div class="col-md-9">
             <input type="text" name="keterangan" class="form-control" value="{{ old('keterangan') }}" placeholder="Isikan keterangan periksa">
             @if ($errors->has('keterangan'))
               <p class="help-block">{{ $errors->first('keterangan') }}</p>
@@ -71,8 +72,8 @@
         </div>
         <br>
         <div class="form-group {{ $errors->has('first_diagnosis') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Diagnosa Awal</label>
-          <div class="col-md-10">
+          <label for="" class="col-sm-3 control-label">Diagnosa Awal</label>
+          <div class="col-md-9">
               <textarea name="first_diagnosis" rows="2" class="form-control" placeholder="Isikan Diagnosa Awal">{{ old('first_diagnosis') }}</textarea>
               @if ($errors->has('first_diagnosis'))
                 <p class="help-block">{{ $errors->first('first_diagnosis') }}</p>

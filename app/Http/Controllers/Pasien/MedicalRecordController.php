@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Pasien;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Register;
-use App\Models\Schedule;
-use App\Models\ListMedicine;
-use App\Models\MedicalRecord;
-use App\Models\MedicalRecordsListMedicine;
 use App\Models\Medicine;
+use App\Models\MedicalRecordsListMedicine;
 
 class MedicalRecordController extends Controller
 {
@@ -20,39 +17,24 @@ class MedicalRecordController extends Controller
         $register = Register::with('polies','users','medicalRecords')
                                 ->where('user_id', $user)
                                 ->where('status_check', 'done')
-                                // ->where('id', $id)
-                                ->get()
-                                ->toArray();
-        // $user = $register->users->get();
-        // $poly = $register->polies->first();
-        // $medicalRecord = $register->medicalRecords->first();
-        dd($register);
-        foreach ($register as $key) {
-            foreach($key['medical_records'] as $key2) {
-              $isi = $key2['register_id'];
+                                ->get();
+        $id = $register[0]->medicalRecords[0]->id;
+        $medicineList = MedicalRecordsListMedicine::with('listMedicine')
+                                ->where('medical_record_id', $id)->get();
+        // $data = [];
+        foreach ($medicineList as $key) {
+            // $data[] = $key['listMedicine'];
+            foreach ($key['listMedicine'] as $value) {
+                $id = $value['medicine_id'];
+                $cekNama = Medicine::where('id', $id)->first();
+                $data['nama'][] = $cekNama;
+                $data['expired'][] = $value['date_expired'];
             }
         }
-        // foreach ($register as $key) {
-        //     foreach ($register['medicalRecords'] as $key) {
-        //         $user = $key['id'];
-        //     }
-        // }
-        $ids = $isi->MedicalRecordsListMedicines;
-        // dd($ids);
-        // $medicineName = array();
-        $medicineName = [];
-        foreach ($ids as $isi) {
-           $medicine_id = $isi['medicine_id'];
-           $listMedicineId = $isi->pivot['list_medicine_id'];
-           $medicine = Medicine::where('id', $medicine_id)
-                               ->first();
-           $listMedicine = ListMedicine::where('id', q)
-                               ->first();
-           $medicineName[] = ['name' => $medicine->name." (".$medicine->aturan_pakai.")",
-                              'price' => $listMedicine->price];
-           // $medicineName['price'][] = ;
-        }
-        dd($medicineName);
-        return view('pasien.medicalRecord');
+
+        $dataCounts = Register::where('status_check', 'done')
+                              ->where('user_id', $user)
+                              ->count();
+        return view('pasien.medicalRecord', compact('register', 'data', 'dataCounts'));
     }
 }

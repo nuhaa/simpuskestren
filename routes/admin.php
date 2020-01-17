@@ -19,3 +19,4 @@ Route::resource('/schedule', 'ScheduleController');
 Route::resource('/data-register', 'RegistrationController');
 Route::post('/register-update', 'RegistrationController@updateStatus')->name('data-register.update.status');
 Route::post('/record', 'RegistrationController@record')->name('data-register.record');
+Route::get('/report', 'ReportController@index')->name('report.data');

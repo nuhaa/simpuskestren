@@ -17,8 +17,8 @@
       <input type="hidden" name="status_check" value="medicine">
       <div class="box-body">
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Nama</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Nama</label>
+          <label for="" class="col-sm-9 control-label">
             @foreach ($register->users as $user)
                 {{ $user['name'] }}
             @endforeach
@@ -26,8 +26,8 @@
         </div>
         <br>
         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Poli Tujuan</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Poli Tujuan</label>
+          <label for="" class="col-sm-9 control-label">
             @foreach ($register->polies as $poli)
                 Poli {{ $poli['name'] }}
             @endforeach
@@ -35,36 +35,36 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Tanggal Periksa</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Tanggal Periksa</label>
+          <label for="" class="col-sm-9 control-label">
             {{ format_hari(\Carbon\Carbon::parse($register->date_check)->format('l')). ", ".
                \Carbon\Carbon::parse($register->date_check)->format('d / M / Y') }}</label>
         </div>
         <br>
         <div class="form-group">
-          <label for="" class="col-sm-2 control-label">Jam Periksa</label>
-          <label for="" class="col-md-10 control-label">{{ $register->time_check_start ." - ". $register->time_check_end }}</label>
+          <label for="" class="col-sm-3 control-label">Jam Periksa</label>
+          <label for="" class="col-md-9 control-label">{{ $register->time_check_start ." - ". $register->time_check_end }}</label>
         </div>
         <br>
         @foreach ($register->medicalRecords as $val)
         <div class="form-group {{ $errors->has('keterangan') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Keterangan</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Keterangan</label>
+          <label for="" class="col-sm-9 control-label">
               {{ $val['keterangan'] }}
           </label>
         </div>
         <br>
         <div class="form-group {{ $errors->has('first_diagnosis') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Diagnosa Awal</label>
-          <label for="" class="col-sm-10 control-label">
+          <label for="" class="col-sm-3 control-label">Diagnosa Awal</label>
+          <label for="" class="col-sm-9 control-label">
               {{ $val['first_diagnosis'] }}
           </label>
         </div>
         @endforeach
         <br>
         <div class="form-group {{ $errors->has('doctor_diagnosis') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Diagnosa Dokter</label>
-          <div class="col-md-10">
+          <label for="" class="col-sm-3 control-label">Diagnosa Dokter</label>
+          <div class="col-md-9">
               <textarea name="doctor_diagnosis" rows="2" class="form-control" placeholder="Isikan Diagnosa Dokter">{{ old('doctor_diagnosis') }}</textarea>
               @if ($errors->has('doctor_diagnosis'))
                 <p class="help-block">{{ $errors->first('doctor_diagnosis') }}</p>
@@ -73,14 +73,12 @@
         </div>
         <br><br>
         <div class="form-group {{ $errors->has('list_medicines') ? 'has-error' : '' }}">
-          <label for="" class="col-sm-2 control-label">Obat</label>
-          <div class="col-md-10">
+          <label for="" class="col-sm-3 control-label">Obat</label>
+          <div class="col-md-9">
             <select class="form-control select2" name="list_medicines[]" multiple="multiple">
               @foreach ($medicines as $medicine)
                  <option value="{{ $medicine->id }}">
-                     @foreach ($medicine->medicines as $val)
-                       {{ $val['name'] }}
-                     @endforeach
+                    {{ $medicine->medicines->name }}
                  </option>
               @endforeach
             </select>

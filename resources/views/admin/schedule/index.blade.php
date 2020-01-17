@@ -72,7 +72,6 @@
     $('button#delete').on('click', function(){
         var href  = $(this).attr('href');
         var title = $(this).data('title');
-
         Swal.fire({
           title: 'Delete this '+ title +' schedule',
           text: "One deleted, you will not be able to recover this category",
