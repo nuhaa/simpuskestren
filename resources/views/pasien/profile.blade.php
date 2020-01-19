@@ -19,6 +19,7 @@
         <div class="field-body">
           <div class="field">
             <p class="control">
+              <input type="hidden" name="id" value="{{ auth()->user()->id }}">
               <input class="input {{ $errors->has('name') ? 'is-danger' : '' }}" type="text" placeholder="Isikan nama" name="name" value="{{ auth()->user()->name }}">
               @if ($errors->has('name'))
                 <p class="help is-danger">{{ $errors->first('name') }}</p>

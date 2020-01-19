@@ -7,21 +7,21 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title" style="display:inline">
-              Obat
-              <a href="{{ route('medicine.create') }}" class="btn bg-purple btn-sm" style="float:right">Tambahkan Obat</a>
+              Pengguna
+              <a href="{{ route('user.create') }}" class="btn bg-purple btn-sm" style="float:right">Tambahkan Pengguna</a>
           </h3>
         </div>
         <div class="box-body">
-            @include('admin.filter.medicine')
+            @include('admin.filter.user')
         </div>
         <div class="box-body">
           <table class="table table-bordered">
             <tr>
               <th style="width:10px">No</th>
-              <th>Obat</th>
-              <th>Kegunaan</th>
-              <th>Aturan Pakai</th>
-              <th>Sasaran</th>
+              <th>Nama</th>
+              <th>Status Pendaftar</th>
+              <th>Hak Akses</th>
+              <th>Email</th>
               <th>Action</th>
             </tr>
             @php
@@ -31,17 +31,17 @@
                 }
                 $no = config('simpuskestren.pagination') * $page - (config('simpuskestren.pagination') - 1);
             @endphp
-            @foreach ($medicines as $medicine)
+            @foreach ($users as $user)
               <tr>
                 <td>{{ $no++ }}</td>
-                <td>{{ $medicine->name }} </td>
-                <td>{{ $medicine->kegunaan }}</td>
-                <td>{{ $medicine->aturan_pakai }}</td>
-                <td>{{ $medicine->sasaran }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->status_pendaftaran }}</td>
+                <td>{{ $user->roleName }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
-                  <a href="{{ route('medicine.edit', $medicine->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
-                  {{-- <a href="{{ route('role.destroy', $medicine->id) }}" class="btn btn-danger">Delete</a> --}}
-                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $medicine->name }}' href={{ route('medicine.destroy', $medicine) }}> <i class="fa fa-trash"></i> Delete</button>
+                  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                  {{-- <a href="{{ route('role.destroy', $user->id) }}" class="btn btn-danger">Delete</a> --}}
+                  {{-- <button class="btn btn-danger" id='delete' data-title='{{ $user->name }}' href={{ route('user.destroy', $user) }}> <i class="fa fa-trash"></i> Delete</button>
                   <form action="" method="post" id="deleteForm">
                     @csrf
                     @method("DELETE")
@@ -53,7 +53,7 @@
           </table>
         </div>
         <div class="box-footer clearfix">
-          {{ $medicines->links('vendor.pagination.adminlte') }}
+          {{ $users->links('vendor.pagination.adminlte') }}
         </div>
       </div>
     </div>

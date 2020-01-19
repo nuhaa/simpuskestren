@@ -25,21 +25,21 @@ class ProfileController extends Controller
             'alamat' => 'required',
         ]);
         $id     = $request->id;
-
-        User::where($id)->update([
-          'name'   => $request->name,
-          'nis'    => $request->nis,
-          'email'  => $request->email,
-          'gender' => $request->gender,
-          'phone'  => $request->phone,
-          'address' => $request->alamat,
-        ]);
-        // try {
-        //     Alert::success('Berhasil Memperbaharui Data Profile', 'Sukses');
-        //     return redirect()->route('pasien.profile');
-        // } catch (\Illuminate\Database\QueryException $ex) {
-        //     Alert::error('Gagaal', 'Gagal');
-        //     return redirect()->route('pasien.profile');
-        // }
+        try {
+            $update = User::find($id);
+            $update->update([
+              'name'   => $request->name,
+              'nis'    => $request->nis,
+              'email'  => $request->email,
+              'gender' => $request->gender,
+              'phone'  => $request->phone,
+              'address' => $request->alamat,
+            ]);
+            Alert::success('Berhasil Memperbaharui Data Profile', 'Sukses');
+            return redirect()->route('pasien.profile');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            Alert::error('Gagaal', 'Gagal');
+            return redirect()->route('pasien.profile');
+        }
     }
 }

@@ -20,3 +20,5 @@ Route::resource('/data-register', 'RegistrationController');
 Route::post('/register-update', 'RegistrationController@updateStatus')->name('data-register.update.status');
 Route::post('/record', 'RegistrationController@record')->name('data-register.record');
 Route::get('/report', 'ReportController@index')->name('report.data');
+Route::post('/medicine-search', 'MedicineController@search')->name('medicine.search');
+Route::post('/user-search', 'UserController@search')->name('user.search');

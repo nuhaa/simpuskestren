@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Medicine;
+use DB;
 
 class MedicineController extends Controller
 {
@@ -15,7 +16,21 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        $medicines = Medicine::orderBy('name', 'asc')->paginate(5);
+        $medicines = Medicine::orderBy('name', 'asc')
+                                ->paginate(10);
+        return view('admin.medicine.index', [
+          'medicines' => $medicines
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $name = $request->name;
+        $kegunaan = $request->kegunaan;
+        $medicines = DB::table('medicines')
+            ->where('kegunaan', 'like', '%'.$kegunaan.'%')
+            ->where('name', 'like', '%'.$name.'%')
+            ->paginate(10);
         return view('admin.medicine.index', [
           'medicines' => $medicines
         ]);

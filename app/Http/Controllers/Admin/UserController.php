@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -18,10 +19,37 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->paginate(5);
-        // dd($users);
+        $users = User::with('roles')->paginate(10);
+        $roles = Role::orderBy('id','asc')->get();
         return view('admin.user.index', [
-          'users' => $users
+          'users' => $users,
+          'roles' => $roles,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $idRole = $request->role;
+        $name = ucwords($request->name);
+        $users = DB::table('users')
+            ->join('users_roles', 'users.id', '=', 'users_roles.user_id')
+            ->join('roles', 'roles.id', '=', 'users_roles.role_id')
+            ->select('users.*', 'roles.name as roleName', 'roles.id as roleId')
+            ->where('users.name', 'like', '%'.$name.'%')
+            ->where('roles.id', function($query) use ($request){
+                if (isset($request->role)) {
+                    $query->select('roles.id as roleId')
+                          ->where('roles.id', $request->role);
+                }else{
+                    $query->select('roles.id as roleId');
+                }
+            })
+            ->paginate(10);
+        // dd($users);
+        $roles = Role::orderBy('id','asc')->get();
+        return view('admin.user.cari', [
+          'users' => $users,
+          'roles' => $roles,
         ]);
     }
 

@@ -12,6 +12,9 @@
           </h3>
         </div>
         <div class="box-body">
+            @include('admin.filter.user')
+        </div>
+        <div class="box-body">
           <table class="table table-bordered">
             <tr>
               <th style="width:10px">No</th>
