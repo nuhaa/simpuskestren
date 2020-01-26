@@ -2,10 +2,10 @@
 
 // use Illuminate\Http\Request;
 
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->name('dokter.index');
-
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// })->name('dokter.index');
+Route::get('/dashboard','DashboardController@index')->name('dokter.index');
 Route::resource('/poly', 'PolyController', [ 'names' => 'dokter.poly' ]);
 Route::resource('/listmedicine', 'ListMedicineController', [ 'names' => 'dokter.listmedicine' ]);
 Route::resource('/medicine', 'MedicineController', [ 'names' => 'dokter.medicine' ]);

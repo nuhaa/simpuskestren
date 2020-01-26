@@ -35,10 +35,10 @@ class RegistrationController extends Controller
             $datas = $datas ->where('poly_id',$polyId)
                             ->where('status_check','check_doctor');
         }
-            $datas = $datas ->where('date_check', date('Y-m-d'))
-                            ->orderBy('poly_id','ASC')
-                            ->orderBy('no_antrian','ASC')
-                            ->get();
+        $datas = $datas ->where('date_check', date('Y-m-d'))
+                        ->orderBy('poly_id','ASC')
+                        ->orderBy('no_antrian','ASC')
+                        ->get();
         return view('admin.register.index', compact('datas'));
     }
 
@@ -93,6 +93,7 @@ class RegistrationController extends Controller
                                 ->where('day', $day)
                                 ->where('poly_id', $poliId)
                                 ->get();
+        // dd($daftarDokters);
         return view('admin.register.edit', compact('register', 'daftarDokters'));
     }
 
